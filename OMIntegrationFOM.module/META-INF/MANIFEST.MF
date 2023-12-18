@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OM.Integration.FOM Module
-Bundle-SymbolicName: OM.Integration.FOM.module
+Bundle-SymbolicName: OMIntegrationFOM.module
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: TIBCO Software Inc.
 TIBCO-BW-ModuleSharedVariables: META-INF/module.msv

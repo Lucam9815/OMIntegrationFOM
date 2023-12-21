@@ -9,6 +9,7 @@
     xmlns:ns0="http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output"
     xmlns:ns1="http://www.tibco.com/commonLog"
     xmlns:ns2="http://tns.tibco.com/bw/json/1702629494899"
+    xmlns:ns3="http://www.tibco.com/aff/orderservice"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -17,6 +18,7 @@
         <task name="SubmitOrderCore">
             <endingVariables>
                 <variable>SubmitOrderCore-input</variable>
+                <variable>SubmitOrderCore</variable>
                 <variable>JMSReceiveMessage</variable>
             </endingVariables>
         </task>
@@ -24,12 +26,12 @@
             <endingVariables>
                 <variable>LogEnd-input</variable>
                 <variable>LogEnd</variable>
-                <variable>SetAndLogStart</variable>
             </endingVariables>
         </task>
         <task name="SetAndLogStart">
             <endingVariables>
                 <variable>SetAndLogStart-input</variable>
+                <variable>SetAndLogStart</variable>
             </endingVariables>
         </task>
     </tibex:VariableDescriptor>
@@ -199,10 +201,10 @@
             targetNamespace="http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output"
             version="0.1"
             xmlns="http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output"
-            xmlns:Q1="http://tns.tibco.com/bw/json/1702629494899"
+            xmlns:Q1="http://www.tibco.com/aff/orderservice"
             xmlns:Q2="http://www.example.org/FlowInfo" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <xsd:import namespace="http://www.example.org/FlowInfo"/>
-            <xsd:import namespace="http://tns.tibco.com/bw/json/1702629494899"/>
+            <xsd:import namespace="http://www.tibco.com/aff/orderservice"/>
             <xsd:complexType name="ActivityOutput">
                 <xsd:sequence>
                     <xsd:element name="MessageID" type="xsd:string"/>
@@ -349,7 +351,7 @@
                     <xsd:element form="unqualified" name="Body">
                         <xsd:complexType>
                             <xsd:sequence>
-                                <xsd:element ref="Q1:SubmitOrderRequestElement"/>
+                                <xsd:element ref="Q1:SubmitOrderRequest"/>
                             </xsd:sequence>
                         </xsd:complexType>
                     </xsd:element>
@@ -660,9 +662,10 @@
             namespace="http://tns.tibco.com/bw/json/1702629494899" prefix="tns1"/>
         <tibex:namespaceItem
             namespace="http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output" prefix="ns"/>
+        <tibex:namespaceItem namespace="http://www.example.org/FlowInfo" prefix="tns2"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/json/1702629494899"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/aff/orderservice"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/FlowInfo"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
@@ -680,8 +683,10 @@
         <bpws:variable element="ns1:Log" name="LogEnd" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:SetLog" name="SetAndLogStart-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:SetLog" name="SetAndLogStart" sca-bpel:internal="true"/>
-        <bpws:variable element="ns2:SubmitOrderRequestElement"
+        <bpws:variable element="ns3:SubmitOrderRequest"
             name="SubmitOrderCore-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns3:SubmitOrderResponse"
+            name="SubmitOrderCore" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -715,13 +720,13 @@
                             xmlns:activityconfig="http://tns.tibco.com/bw/model/activityconfig"
                             xmlns:bwext="http://tns.tibco.com/bw/model/core/bwext"
                             xmlns:jms="http://ns.tibco.com/bw/palette/jms"
-                            xmlns:json_1702629494899="http://tns.tibco.com/bw/json/1702629494899" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                            xmlns:orderservice="http://www.tibco.com/aff/orderservice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
                             <activityConfig>
                                 <properties name="config" xsi:type="activityconfig:EMFProperty">
                                     <type href="http://ns.tibco.com/bw/palette/jms#//JMSReceiverEventSource"/>
                                     <value
                                     appPropsReference="FlowInfo:FlowInfoComplexType"
-                                    bodyTypeQName="json_1702629494899:SubmitOrderRequestElement"
+                                    bodyTypeQName="orderservice:SubmitOrderRequest"
                                     connectionReference="jmsConnection"
                                     destinationName="om.integration.fom.submitorder"
                                     maxSessions="1"
@@ -736,6 +741,7 @@
             <bpws:extensionActivity>
                 <tibex:extActivity inputVariable="SubmitOrderCore-input"
                     name="SubmitOrderCore"
+                    outputVariable="SubmitOrderCore"
                     tibex:xpdlId="4a8f736f-45c5-4f12-a5e2-388c1cfcf5a4"
                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
@@ -746,7 +752,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://tns.tibco.com/bw/json/1702629494899&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JMSReceiveMessage&quot;/>&lt;xsl:template name=&quot;SubmitOrderCore-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns1:SubmitOrderRequestElement&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:ns1=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;JMSReceiveMessage&quot;/>&#xa;    &lt;xsl:template name=&quot;SubmitOrderCore-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/ns1:SubmitOrderRequest&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:CallProcess
                         subProcessName="om.integration.fom.core.SubmitOrderCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
@@ -762,7 +768,7 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;SetAndLogStart&quot;/>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;xsl:copy-of select=&quot;$SetAndLogStart/tns:Header&quot;/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End Listener SubmitOrder'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End Listener SubmitOrder'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:CallProcess moduleRef="LogManagement"
                         subProcessName="it.tiscali.common.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
@@ -782,7 +788,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; xmlns:tns1=&quot;http://www.example.org/FlowInfo&quot; xmlns:ns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JMSReceiveMessage&quot;/>&lt;xsl:template name=&quot;SetAndLogStart-input&quot; match=&quot;/&quot;>&lt;tns:SetLog>&lt;tns:Header>&lt;tns:tibAppId>&lt;xsl:value-of select=&quot;tib:uuid()&quot;/>&lt;/tns:tibAppId>&lt;xsl:if test=&quot;$JMSReceiveMessage/ns:OtherProperties/tns1:correlationId&quot;>&lt;tns:correlationId>&lt;xsl:value-of select=&quot;$JMSReceiveMessage/ns:OtherProperties/tns1:correlationId&quot;/>&lt;/tns:correlationId>&lt;/xsl:if>&lt;/tns:Header>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start Listener SubmitOrder'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:SetLog>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tns2=&quot;http://www.example.org/FlowInfo&quot; xmlns:ns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;JMSReceiveMessage&quot;/>&#xa;    &lt;xsl:template name=&quot;SetAndLogStart-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns:SetLog>&#xa;            &lt;tns:Header>&#xa;                &lt;tns:tibAppId>&#xa;                    &lt;xsl:value-of select=&quot;tib:uuid()&quot;/>&#xa;                &lt;/tns:tibAppId>&#xa;                &lt;xsl:if test=&quot;$JMSReceiveMessage/ns:OtherProperties/tns2:correlationId&quot;>&#xa;                    &lt;tns:correlationId>&#xa;                        &lt;xsl:value-of select=&quot;$JMSReceiveMessage/ns:OtherProperties/tns2:correlationId&quot;/>&#xa;                    &lt;/tns:correlationId>&#xa;                &lt;/xsl:if>&#xa;            &lt;/tns:Header>&#xa;            &lt;tns:Input>&#xa;                &lt;tns:level>&#xa;                    &lt;xsl:value-of select=&quot;'INFO'&quot;/>&#xa;                &lt;/tns:level>&#xa;                &lt;tns:message>&#xa;                    &lt;xsl:value-of select=&quot;'Start Listener SubmitOrder'&quot;/>&#xa;                &lt;/tns:message>&#xa;            &lt;/tns:Input>&#xa;        &lt;/tns:SetLog>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:CallProcess moduleRef="LogManagement"
                         subProcessName="it.tiscali.common.log.SetAndLog" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>

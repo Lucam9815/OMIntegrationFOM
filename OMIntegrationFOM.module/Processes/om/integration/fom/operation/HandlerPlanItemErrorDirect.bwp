@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="om.integration.fom.operation.SubmitOrderDirect"
+    name="om.integration.fom.operation.HandlerPlanItemErrorDirect"
     suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20231215092740"
+    targetNamespace="http://xmlns.example.com/20231221112357"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
@@ -186,7 +186,7 @@
         productVersion="6.10.0 V23 2023-11-10" scalable="true"
         singleton="true" stateless="false" type="IT"/>
     <tibex:ProcessInterface context=""
-        input="{http://www.tibco.com/aff/orderservice}SubmitOrderRequest" output="{http://www.tibco.com/aff/orderservice}SubmitOrderResponse"/>
+        input="{http://www.tibco.com/aff/orderservice}InternalErrorHandlerRequest" output="{http://www.tibco.com/aff/orderservice}InternalErrorHandlerResponse"/>
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
@@ -339,14 +339,16 @@
     <tibex:NamespaceRegistry enabled="true">
         <tibex:namespaceItem
             namespace="http://www.tibco.com/aff/orderservice" prefix="tns"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/aff/internalerrorhandler" prefix="ns"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/aff/orderservice"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
-        <bpws:variable element="ns0:SubmitOrderRequest" name="Start"
-            sca-bpel:internal="true" tibex:parameter="in"/>
-        <bpws:variable element="ns0:SubmitOrderResponse"
+        <bpws:variable element="ns0:InternalErrorHandlerRequest"
+            name="Start" sca-bpel:internal="true" tibex:parameter="in"/>
+        <bpws:variable element="ns0:InternalErrorHandlerResponse"
             name="End-input" sca-bpel:internal="true" tibex:parameter="out"/>
     </bpws:variables>
     <bpws:extensions>
@@ -384,8 +386,10 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns:SubmitOrderResponse>&lt;tns:orderId>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/tns:orderId>&lt;tns:orderRef>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/tns:orderRef>&lt;/tns:SubmitOrderResponse>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; xmlns:ns=&quot;http://www.tibco.com/aff/internalerrorhandler&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns:InternalErrorHandlerResponse>&lt;ns:OrderId>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/ns:OrderId>&lt;ns:Message>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/ns:Message>&lt;/tns:InternalErrorHandlerResponse>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
+                    <tibex:inputBinding
+                        expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">&lt;?xml version="1.0" encoding="UTF-8"?&gt; &lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns="http://www.tibco.com/aff/orderservice" version="2.0"&gt; &lt;xsl:template name="End-input" match="/"&gt; &lt;tns:InternalErrorHandlerResponse/&gt;&lt;/xsl:template&gt; &lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                     <tibex:config>
                         <bwext:BWActivity
                             activityTypeID="bw.internal.end"

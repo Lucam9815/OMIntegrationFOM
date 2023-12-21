@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="om.integration.fom.operation.SubmitOrderDirect"
+    name="om.integration.fom.operation.AmendOrderDirect"
     suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20231215092740"
+    targetNamespace="http://xmlns.example.com/20231221110041"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
@@ -186,7 +186,7 @@
         productVersion="6.10.0 V23 2023-11-10" scalable="true"
         singleton="true" stateless="false" type="IT"/>
     <tibex:ProcessInterface context=""
-        input="{http://www.tibco.com/aff/orderservice}SubmitOrderRequest" output="{http://www.tibco.com/aff/orderservice}SubmitOrderResponse"/>
+        input="{http://www.tibco.com/aff/orderservice}AmendOrderRequest" output="{http://www.tibco.com/aff/orderservice}AmendOrderResponse"/>
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
@@ -344,10 +344,10 @@
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
-        <bpws:variable element="ns0:SubmitOrderRequest" name="Start"
+        <bpws:variable element="ns0:AmendOrderRequest" name="Start"
             sca-bpel:internal="true" tibex:parameter="in"/>
-        <bpws:variable element="ns0:SubmitOrderResponse"
-            name="End-input" sca-bpel:internal="true" tibex:parameter="out"/>
+        <bpws:variable element="ns0:AmendOrderResponse" name="End-input"
+            sca-bpel:internal="true" tibex:parameter="out"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -384,7 +384,7 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns:SubmitOrderResponse>&lt;tns:orderId>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/tns:orderId>&lt;tns:orderRef>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/tns:orderRef>&lt;/tns:SubmitOrderResponse>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;tns:AmendOrderResponse>&lt;tns:orderId>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/tns:orderId>&lt;tns:orderRef>&lt;xsl:value-of select=&quot;''&quot;/>&lt;/tns:orderRef>&lt;/tns:AmendOrderResponse>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity

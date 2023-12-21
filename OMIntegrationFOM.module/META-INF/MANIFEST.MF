@@ -5,7 +5,12 @@ Bundle-SymbolicName: OMIntegrationFOM.module
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: TIBCO Software Inc.
 TIBCO-BW-ModuleSharedVariables: META-INF/module.msv
-Require-Capability: com.tibco.bw.model; filter:="(name=bwext)",com.tibco.bw.module; filter:="(&(name=LogManagement)(version=1.0.0))",com.tibco.bw.palette; filter:="(name=bw.generalactivities)",com.tibco.bw.palette; filter:="(name=bw.jms)",com.tibco.bw.sharedresource.model; filter:="(name=bw.jmsconnection)"
+Require-Capability: com.tibco.bw.model; filter:="(name=bwext)",
+ com.tibco.bw.module; filter:="(&(name=LogManagement)(version=1.0.0))",
+ com.tibco.bw.module; filter:="(&(name=OMSharedGlobal)(version=1.0.0))",
+ com.tibco.bw.palette; filter:="(name=bw.generalactivities)",
+ com.tibco.bw.palette; filter:="(name=bw.jms)",
+ com.tibco.bw.sharedresource.model; filter:="(name=bw.jmsconnection)"
 TIBCO-BW-Edition: bwe
 TIBCO-BW-ConfigProfile: META-INF/default.substvar
 TIBCO-BW-ApplicationModule: META-INF/module.bwm

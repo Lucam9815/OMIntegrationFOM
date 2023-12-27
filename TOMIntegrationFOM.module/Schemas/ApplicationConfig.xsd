@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<schema 
+xmlns="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema" 
+elementFormDefault="qualified" 
+targetNamespace="http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema">
+
+	<element name="ApplicationConfig" type="tns:ApplicationConfigComplexType"/>
+
+    
+    <complexType name="ApplicationConfigComplexType">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="0" name="ProjectName" type="string" />
+    		<element maxOccurs="1" minOccurs="0" name="EnableInspector" type="boolean"/>
+    		<element maxOccurs="1" minOccurs="0" name="Others">
+    			<complexType>
+    				<sequence>
+    					<element maxOccurs="unbounded" minOccurs="0" name="Param" type="tns:KeyValuePairComplexType" />
+    				</sequence>
+    			</complexType>
+    		</element>
+    	</sequence>
+    	<attribute name="Application" type="string"/>
+    </complexType>
+
+
+    <complexType name="KeyValuePairComplexType">
+    	<sequence>
+    		<element maxOccurs="1" minOccurs="1" name="Key" type="string"/>
+    		<element maxOccurs="1" minOccurs="1" name="Value" type="string"/>
+    	</sequence>
+    </complexType>
+</schema>

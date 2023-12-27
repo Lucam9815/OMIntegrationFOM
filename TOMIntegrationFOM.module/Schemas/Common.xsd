@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema 
+xmlns="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://it.fastweb.com.org/COM/IntegrationFOM/common/schema"
+xmlns:tns="http://it.fastweb.com.org/COM/IntegrationFOM/common/schema"
+xmlns:fom="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"
+xmlns:com="http://it.fastweb.com.org/COM/COMDataModel/internal/schema"
+elementFormDefault="qualified">
+
+
+	<import schemaLocation="../../../LASharedGlobal/LA.Shared.Global/Schemas/Internal/FOM/CommonIntegrationFOM.xsd" namespace="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema" />
+	<import schemaLocation="../../../LASharedGlobal/LA.Shared.Global/Schemas/Internal/COMDataModel.xsd" namespace="http://it.fastweb.com.org/COM/COMDataModel/internal/schema" />
+	
+    
+	<element name="NotifyFOM">
+	    <complexType>
+	        <sequence>
+	            <element maxOccurs="1" minOccurs="1" name="Type">
+	                <simpleType>
+	                    <restriction base="tns:TypeSimpleType">
+	                    	<enumeration value="ActivateReply" />
+	                        <enumeration value="SuspendReply" />
+	                        <enumeration value="SuccessReply" />
+	                        <enumeration value="Failed" />
+	                        <enumeration value="Milestone" />
+	                    </restriction>
+	                </simpleType>
+	            </element>
+	            <element minOccurs="1" name="FOMRequest" type="fom:NotifyFOMComplexType"/>
+	        </sequence>
+	    </complexType>
+	</element>
+
+
+	<simpleType name="TypeSimpleType">
+         <restriction base="string" />
+    </simpleType>
+    
+    <element name="GetInfoOrdineIn">
+		<complexType>
+			<choice>
+				 <element minOccurs="1" maxOccurs="1" type="string" name="ORDER_REF_ID" />
+				 <element minOccurs="1" maxOccurs="1" type="string" name="PLAN_ID" />
+			</choice>
+		</complexType>
+	</element>
+    
+	<element name="GetInfoOrdineOut">
+		<complexType>
+			<sequence>
+				 <element minOccurs="0" maxOccurs="1" type="string" name="ORDER_REF_ID" />
+				 <element minOccurs="0" maxOccurs="1" type="string" name="PLAN_ID" />
+				 <element minOccurs="0" maxOccurs="1" type="string" name="ORDER_ID" />
+				 <element minOccurs="0" maxOccurs="1" type="string" name="ORIGINATOR" />
+				 <element minOccurs="0" maxOccurs="1" type="string" name="TENANT_ID" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="InsertInfoErrore">
+		<complexType>
+			<sequence>
+				<element minOccurs="0" maxOccurs="1" type="string" name="ERRORE_STEP" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="PLAN_ITEM_ID" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="PAYLOAD" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="GetInfoErroreIn">
+		<complexType>
+			<sequence>
+				<element minOccurs="0" maxOccurs="1" type="string" name="ERRORE_FUNCTIONALID" />
+			</sequence>
+		</complexType>
+	</element>
+	
+	<element name="GetInfoErroreOut">
+		<complexType>
+			<sequence>
+				<element minOccurs="0" maxOccurs="1" type="string" name="ORDER_REF_ID" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="ERRORE_FUNCTIONALID" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="ERRORE_SOURCE" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="ERRORE_QUEUE" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="ERRORE_STEP" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="PLAN_ITEM_ID" />
+				<element minOccurs="0" maxOccurs="1" type="string" name="PAYLOAD" />
+			</sequence>
+		</complexType>
+	</element>
+		
+		
+	<element name="GetOriginatorIn">
+		<complexType>
+			<sequence>
+			 	<element minOccurs="0" maxOccurs="1" type="string" name="ORDER_ID" />
+			</sequence>
+		</complexType>
+	</element>	
+	
+	<element name="GetOriginatorOut">
+		<complexType>
+			<sequence>
+			 	<element minOccurs="0" maxOccurs="1" type="string" name="ORIGINATOR" />
+			</sequence>
+		</complexType>
+	</element>	
+	
+</schema>

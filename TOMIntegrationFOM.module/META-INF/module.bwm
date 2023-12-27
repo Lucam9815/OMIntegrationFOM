@@ -80,4 +80,7 @@
       <sca:interface.wsdl xmi:id="_Hty0g6SfEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227110301PLT#wsdl.interface(LA-Integration-FOM-API-OfferPriceService-ValidateOffer)" scaext:wsdlLocation="../Processes/om/integration/fom/main/ValidateOffer.bwp"/>
     </sca:service>
   </sca:component>
+  <sca:component xmi:id="_9XNwgKTFEe6hXfHJn0yiVw" name="ComponentNotifyFOM" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_9XNwgaTFEe6hXfHJn0yiVw" processName="tom.integration.fom.main.NotifyFOM"/>
+  </sca:component>
 </sca:composite>

@@ -1,0 +1,358 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "SubmitOrder",
+    "description" : "SubmitOrder service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/LA/Integration/FOM/API/OrderService/SubmitOrder" : {
+      "post" : {
+        "summary" : "postSubmitOrder",
+        "description" : "postSubmitOrder",
+        "operationId" : "post-LA-Integration-FOM-API-OrderService-SubmitOrder",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/SubmitOrderRequest"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a SubmitOrderResponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/SubmitOrderResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "orderRequestType" : {
+      "type" : "object",
+      "required" : [ "orderRef", "line", "header" ],
+      "properties" : {
+        "orderRef" : {
+          "type" : "string",
+          "maxLength" : 125
+        },
+        "header" : {
+          "$ref" : "#/definitions/headerRequestType"
+        },
+        "line" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/line",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "headerRequestType" : {
+      "type" : "object",
+      "required" : [ "customerID", "subscriberID" ],
+      "properties" : {
+        "description" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "customerID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "orderPriority" : {
+          "type" : "integer"
+        },
+        "invoiceAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "SubmitOrderRequest" : {
+      "type" : "object",
+      "required" : [ "orderRequest" ],
+      "properties" : {
+        "orderRequest" : {
+          "$ref" : "#/definitions/orderRequestType"
+        },
+        "ExternalBusinessTransactionID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 64
+        }
+      }
+    },
+    "line" : {
+      "type" : "object",
+      "required" : [ "uom", "quantity", "productID", "action", "lineNumber" ],
+      "properties" : {
+        "lineNumber" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "productID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 255
+        },
+        "productVersion" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "uom" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "action" : {
+          "type" : "string"
+        },
+        "actionMode" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "linkID" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "inventoryID" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "characteristic" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/characteristic",
+            "uniqueItems" : false
+          }
+        },
+        "customerItemID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "addressType" : {
+      "type" : "object",
+      "required" : [ "country", "locality", "postCode", "line1" ],
+      "properties" : {
+        "line1" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 100
+        },
+        "line2" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "line3" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "locality" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 45
+        },
+        "region" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "country" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 2
+        },
+        "postCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 20
+        },
+        "supplementaryLocation" : {
+          "type" : "string",
+          "maxLength" : 45
+        }
+      }
+    },
+    "udf" : {
+      "type" : "object",
+      "required" : [ "name", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "extensionType" : {
+      "type" : "object",
+      "properties" : { }
+    },
+    "SubmitOrderResponse" : {
+      "type" : "object",
+      "required" : [ "orderRef", "orderId" ],
+      "properties" : {
+        "orderId" : {
+          "type" : "string"
+        },
+        "orderRef" : {
+          "type" : "string"
+        },
+        "BusinessTransactionID" : {
+          "type" : "string"
+        },
+        "ExternalBusinessTransactionID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 64
+        }
+      }
+    },
+    "value" : {
+      "type" : "object",
+      "required" : [ "name", "type" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "value" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "valueFrom" : {
+          "type" : "string",
+          "maxLength" : 19
+        },
+        "valueTo" : {
+          "type" : "string",
+          "maxLength" : 19
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "characteristic" : {
+      "type" : "object",
+      "required" : [ "name", "description" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "description" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "value" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/value",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    }
+  }
+}

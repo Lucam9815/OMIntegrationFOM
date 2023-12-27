@@ -1,0 +1,531 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "ValidateOffer",
+    "description" : "ValidateOffer service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/LA/Integration/FOM/API/OfferPriceService/ValidateOffer" : {
+      "post" : {
+        "summary" : "postValidateOffer",
+        "description" : "postValidateOffer",
+        "operationId" : "post-LA-Integration-FOM-API-OfferPriceService-ValidateOffer",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/ValidateOfferRequest"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a ValidateOfferResponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/ValidateOfferResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "orderRequestType" : {
+      "type" : "object",
+      "required" : [ "orderRef", "line", "header" ],
+      "properties" : {
+        "orderRef" : {
+          "type" : "string",
+          "maxLength" : 125
+        },
+        "header" : {
+          "$ref" : "#/definitions/headerRequestType"
+        },
+        "line" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/line",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "headerRequestType" : {
+      "type" : "object",
+      "required" : [ "customerID", "subscriberID" ],
+      "properties" : {
+        "description" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "customerID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "orderPriority" : {
+          "type" : "integer"
+        },
+        "invoiceAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "Message" : {
+      "type" : "object",
+      "required" : [ "Type", "Details", "Code" ],
+      "properties" : {
+        "Code" : {
+          "type" : "string"
+        },
+        "Type" : {
+          "type" : "string"
+        },
+        "Details" : {
+          "type" : "string"
+        },
+        "CausingItem" : {
+          "type" : "string"
+        },
+        "CausingItemID" : {
+          "type" : "string"
+        },
+        "CausingItemPosition" : {
+          "type" : "string"
+        },
+        "CausingItemPositionID" : {
+          "type" : "string"
+        },
+        "RuleViolation" : {
+          "type" : "string"
+        },
+        "udf" : {
+          "$ref" : "#/definitions/udf"
+        }
+      }
+    },
+    "ValidationResultMessage" : {
+      "type" : "object",
+      "required" : [ "Linenumber", "Message", "ProductID", "InventoryID" ],
+      "properties" : {
+        "Linenumber" : {
+          "type" : "string"
+        },
+        "InventoryID" : {
+          "type" : "string"
+        },
+        "ProductID" : {
+          "type" : "string"
+        },
+        "Message" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Message",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "line" : {
+      "type" : "object",
+      "required" : [ "uom", "quantity", "productID", "action", "lineNumber" ],
+      "properties" : {
+        "lineNumber" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "productID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 255
+        },
+        "productVersion" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "uom" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "action" : {
+          "type" : "string"
+        },
+        "actionMode" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "linkID" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "inventoryID" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "characteristic" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/characteristic",
+            "uniqueItems" : false
+          }
+        },
+        "customerItemID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "addressType" : {
+      "type" : "object",
+      "required" : [ "country", "locality", "postCode", "line1" ],
+      "properties" : {
+        "line1" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 100
+        },
+        "line2" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "line3" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "locality" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 45
+        },
+        "region" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "country" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 2
+        },
+        "postCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 20
+        },
+        "supplementaryLocation" : {
+          "type" : "string",
+          "maxLength" : 45
+        }
+      }
+    },
+    "Segment" : {
+      "type" : "object",
+      "required" : [ "Type", "Name" ],
+      "properties" : {
+        "Name" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "Type" : {
+          "type" : "string"
+        },
+        "udf" : {
+          "$ref" : "#/definitions/udf"
+        }
+      }
+    },
+    "characteristic" : {
+      "type" : "object",
+      "required" : [ "name", "description" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "description" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "value" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/value",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "resultStatus" : {
+      "type" : "object",
+      "required" : [ "severity", "code", "service", "message", "operation", "deployment" ],
+      "properties" : {
+        "deployment" : {
+          "type" : "string"
+        },
+        "service" : {
+          "type" : "string"
+        },
+        "operation" : {
+          "type" : "string"
+        },
+        "component" : {
+          "type" : "string"
+        },
+        "severity" : {
+          "type" : "string",
+          "enum" : [ "E", "F", "I", "S", "W" ]
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "ValidateOfferResponse" : {
+      "type" : "object",
+      "required" : [ "resultStatus", "ValidationPass" ],
+      "properties" : {
+        "resultStatus" : {
+          "$ref" : "#/definitions/resultStatus"
+        },
+        "ValidationPass" : {
+          "type" : "boolean"
+        },
+        "ValidationResultMessage" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ValidationResultMessage",
+            "uniqueItems" : false
+          }
+        },
+        "orderRequest" : {
+          "$ref" : "#/definitions/orderRequestType"
+        },
+        "BusinessTransactionID" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RequestControl" : {
+      "type" : "object",
+      "properties" : {
+        "ReturnProductInformationData" : {
+          "$ref" : "#/definitions/ReturnProductInformationData"
+        },
+        "basicValidationOnExistingOffer" : {
+          "type" : "boolean"
+        },
+        "decomposeProducts" : {
+          "type" : "boolean"
+        },
+        "enforceCompatibleSegment" : {
+          "type" : "boolean"
+        },
+        "skipChildFilterValidation" : {
+          "type" : "boolean"
+        },
+        "validateData" : {
+          "type" : "boolean"
+        },
+        "validateProdDate" : {
+          "type" : "boolean"
+        },
+        "validateProductCompatibility" : {
+          "type" : "boolean"
+        },
+        "validateProductComprisedOfGroups" : {
+          "type" : "boolean"
+        },
+        "validateProductRequiredForGroups" : {
+          "type" : "boolean"
+        },
+        "validateSegmentCompatibility" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "udf" : {
+      "type" : "object",
+      "required" : [ "name", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "extensionType" : {
+      "type" : "object",
+      "properties" : { }
+    },
+    "ValidateOfferRequest" : {
+      "type" : "object",
+      "required" : [ "orderRequest" ],
+      "properties" : {
+        "RequestControl" : {
+          "$ref" : "#/definitions/RequestControl"
+        },
+        "Segment" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Segment",
+            "uniqueItems" : false
+          }
+        },
+        "orderRequest" : {
+          "$ref" : "#/definitions/orderRequestType"
+        },
+        "BusinessTransactionID" : {
+          "type" : "string"
+        },
+        "CalculateConsequences" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "value" : {
+      "type" : "object",
+      "required" : [ "name", "type" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "value" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "valueFrom" : {
+          "type" : "string",
+          "maxLength" : 19
+        },
+        "valueTo" : {
+          "type" : "string",
+          "maxLength" : 19
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "ReturnProductInformationData" : {
+      "type" : "object",
+      "properties" : {
+        "ReturnCharacteristicsName" : {
+          "type" : "string"
+        },
+        "ReturnCharacteristicsDescription" : {
+          "type" : "string"
+        },
+        "ReturnCharacteristicsValueType" : {
+          "type" : "string"
+        },
+        "ReturnCharacteristicsDetails" : {
+          "type" : "boolean"
+        }
+      }
+    }
+  }
+}

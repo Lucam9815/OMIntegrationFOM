@@ -1,5 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_4SWFcJsiEe6T8Ir02ZwFZA" targetNamespace="http://tns.tibco.com/bw/composite/TOMIntegrationFOM.module" name="TOMIntegrationFOM.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_4SWFcJsiEe6T8Ir02ZwFZA" targetNamespace="http://tns.tibco.com/bw/composite/TOMIntegrationFOM.module" name="TOMIntegrationFOM.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_1RcHkKSWEe6XUeJyIJxhHQ" name="la-integration-fom-api-orderservice-amendorder" promote="ComponentAmendOrder/la-integration-fom-api-orderservice-amendorder">
+    <sca:interface.wsdl xmi:id="_1RlRgaSWEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227100341PLT#wsdl.interface(la-integration-fom-api-orderservice-amendorder)" scaext:wsdlLocation="../Processes/om/integration/fom/main/AmendOrder.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_1RvpkKSWEe6XUeJyIJxhHQ" name="RestService" path="/LA/Integration/FOM/API/OrderService/AmendOrder" docBasePath="http://localhost:7777/TOMIntegrationFOM.module" docResourcePath="AmendOrder" basePath="/" connector="tom.integration.fom.http.connector.IntegrationFOM" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/om.integration.fom.main.AmendOrder-AmendOrder.json">
+      <operation xmi:id="_1RvpkqSWEe6XUeJyIJxhHQ" operationName="post" nickname="post-la-integration-fom-api-orderservice-amendorder" httpMethod="POST" notes="postAmendOrder" responseStyle="element" requestStyle="element" outputPartName="item">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <advancedConfig xmi:id="_1RvpkaSWEe6XUeJyIJxhHQ" blockingQueueSize="8192"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_1Rvpk6SWEe6XUeJyIJxhHQ" bindingName="RestService"/>
+  </sca:service>
+  <sca:service xmi:id="_HhiMEqSdEe6XUeJyIJxhHQ" name="LA-Integration-FOM-API-OrderService-GetOrders" promote="ComponentGetOrders/LA-Integration-FOM-API-OrderService-GetOrders">
+    <sca:interface.wsdl xmi:id="_HhiMFqSdEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227104841PLT#wsdl.interface(LA-Integration-FOM-API-OrderService-GetOrders)" scaext:wsdlLocation="../Processes/om/integration/fom/main/GetOrders.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_HhnEkKSdEe6XUeJyIJxhHQ" name="RestService1" path="/LA/Integration/FOM/API/OrderService/GetOrders" docBasePath="http://localhost:7777/TOMIntegrationFOM.module" docResourcePath="GetOrders" basePath="/" connector="tom.integration.fom.http.connector.IntegrationFOM" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/om.integration.fom.main.GetOrders-GetOrders.json">
+      <operation xmi:id="_HhnEkqSdEe6XUeJyIJxhHQ" operationName="post" nickname="post-LA-Integration-FOM-API-OrderService-GetOrders" httpMethod="POST" notes="postGetOrders" responseStyle="element" requestStyle="element" outputPartName="item">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_Hh70sKSdEe6XUeJyIJxhHQ"/>
+      <advancedConfig xmi:id="_HhnEkaSdEe6XUeJyIJxhHQ" blockingQueueSize="8192"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_HhnEk6SdEe6XUeJyIJxhHQ" bindingName="RestService1"/>
+  </sca:service>
+  <sca:service xmi:id="_s-y3wqSdEe6XUeJyIJxhHQ" name="LA-Integration-FOM-API-OrderService-SubmitOrder" promote="ComponentSubmitOrder/LA-Integration-FOM-API-OrderService-SubmitOrder">
+    <sca:interface.wsdl xmi:id="_s-y3xqSdEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227105252PLT#wsdl.interface(LA-Integration-FOM-API-OrderService-SubmitOrder)" scaext:wsdlLocation="../Processes/om/integration/fom/main/SubmitOrder.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_s-y3x6SdEe6XUeJyIJxhHQ" name="RestService2" path="/LA/Integration/FOM/API/OrderService/SubmitOrder" docBasePath="http://localhost:7777/TOMIntegrationFOM.module" docResourcePath="SubmitOrder" basePath="/" connector="tom.integration.fom.http.connector.IntegrationFOM" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/om.integration.fom.main.SubmitOrder-SubmitOrder.json">
+      <operation xmi:id="_s-y3yaSdEe6XUeJyIJxhHQ" operationName="post" nickname="post-LA-Integration-FOM-API-OrderService-SubmitOrder" httpMethod="POST" notes="postSubmitOrder" responseStyle="element" requestStyle="element" outputPartName="item">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_s_VqUKSdEe6XUeJyIJxhHQ"/>
+      <advancedConfig xmi:id="_s-y3yKSdEe6XUeJyIJxhHQ" blockingQueueSize="8192"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_s-y3yqSdEe6XUeJyIJxhHQ" bindingName="RestService2"/>
+  </sca:service>
+  <sca:service xmi:id="_Hty0hKSfEe6XUeJyIJxhHQ" name="LA-Integration-FOM-API-OfferPriceService-ValidateOffer" promote="ComponentValidateOffer/LA-Integration-FOM-API-OfferPriceService-ValidateOffer">
+    <sca:interface.wsdl xmi:id="_Hty0iKSfEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227110301PLT#wsdl.interface(LA-Integration-FOM-API-OfferPriceService-ValidateOffer)" scaext:wsdlLocation="../Processes/om/integration/fom/main/ValidateOffer.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_Ht7XYKSfEe6XUeJyIJxhHQ" name="RestService3" path="/LA/Integration/FOM/API/OfferPriceService/ValidateOffer" docBasePath="http://localhost:7777/TOMIntegrationFOM.module" docResourcePath="ValidateOffer" basePath="/" connector="tom.integration.fom.http.connector.IntegrationFOM" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/om.integration.fom.main.ValidateOffer-ValidateOffer.json">
+      <operation xmi:id="_HuA28KSfEe6XUeJyIJxhHQ" operationName="post" nickname="post-LA-Integration-FOM-API-OfferPriceService-ValidateOffer" httpMethod="POST" notes="postValidateOffer" responseStyle="element" requestStyle="element" outputPartName="item">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_HunT4KSfEe6XUeJyIJxhHQ"/>
+      <advancedConfig xmi:id="_Ht7XYaSfEe6XUeJyIJxhHQ" blockingQueueSize="8192"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_HuA28aSfEe6XUeJyIJxhHQ" bindingName="RestService3"/>
+  </sca:service>
   <sca:property xmi:id="_6OV4EJsiEe6T8Ir02ZwFZA" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_6OoL8JsiEe6T8Ir02ZwFZA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_6OoL8ZsiEe6T8Ir02ZwFZA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
@@ -9,19 +56,28 @@
   <sca:property xmi:id="_6O0ZMZsiEe6T8Ir02ZwFZA" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_6O0ZMpsiEe6T8Ir02ZwFZA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
   <sca:property xmi:id="_6O0ZM5siEe6T8Ir02ZwFZA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
-  <sca:component xmi:id="_5OXBwJsiEe6T8Ir02ZwFZA" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_5OXBwZsiEe6T8Ir02ZwFZA" processName="om.integration.fom.main.SubmitOrderListener"/>
+  <sca:component xmi:id="_1RTksKSWEe6XUeJyIJxhHQ" name="ComponentAmendOrder" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_1RTksaSWEe6XUeJyIJxhHQ" processName="tom.integration.fom.main.AmendOrder"/>
+    <sca:service xmi:id="_1RTksqSWEe6XUeJyIJxhHQ" name="la-integration-fom-api-orderservice-amendorder">
+      <sca:interface.wsdl xmi:id="_1RTks6SWEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227100341PLT#wsdl.interface(la-integration-fom-api-orderservice-amendorder)" scaext:wsdlLocation="../Processes/om/integration/fom/main/AmendOrder.bwp"/>
+    </sca:service>
   </sca:component>
-  <sca:component xmi:id="_wu7S8J_mEe6EWsQ1gYGWGg" name="ComponentAmendOrderListener" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_wu7S8Z_mEe6EWsQ1gYGWGg" processName="om.integration.fom.main.AmendOrderListener"/>
+  <sca:component xmi:id="_HhB1wKSdEe6XUeJyIJxhHQ" name="ComponentGetOrders" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_HhB1waSdEe6XUeJyIJxhHQ" processName="tom.integration.fom.main.GetOrders"/>
+    <sca:service xmi:id="_HhiMEKSdEe6XUeJyIJxhHQ" name="LA-Integration-FOM-API-OrderService-GetOrders">
+      <sca:interface.wsdl xmi:id="_HhiMEaSdEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227104841PLT#wsdl.interface(LA-Integration-FOM-API-OrderService-GetOrders)" scaext:wsdlLocation="../Processes/om/integration/fom/main/GetOrders.bwp"/>
+    </sca:service>
   </sca:component>
-  <sca:component xmi:id="_5ur74Z_pEe6EWsQ1gYGWGg" name="ComponentHandlerPlanItemErrorListener" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_5ur74p_pEe6EWsQ1gYGWGg" processName="om.integration.fom.main.HandlerPlanItemErrorListener"/>
+  <sca:component xmi:id="_s-wbgKSdEe6XUeJyIJxhHQ" name="ComponentSubmitOrder" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_s-wbgaSdEe6XUeJyIJxhHQ" processName="tom.integration.fom.main.SubmitOrder"/>
+    <sca:service xmi:id="_s-y3wKSdEe6XUeJyIJxhHQ" name="LA-Integration-FOM-API-OrderService-SubmitOrder">
+      <sca:interface.wsdl xmi:id="_s-y3waSdEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227105252PLT#wsdl.interface(LA-Integration-FOM-API-OrderService-SubmitOrder)" scaext:wsdlLocation="../Processes/om/integration/fom/main/SubmitOrder.bwp"/>
+    </sca:service>
   </sca:component>
-  <sca:component xmi:id="_hMyMAZ_sEe6EWsQ1gYGWGg" name="ComponentValidateOfferListener" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_hMyMAp_sEe6EWsQ1gYGWGg" processName="om.integration.fom.main.ValidateOfferListener"/>
-  </sca:component>
-  <sca:component xmi:id="_8e0dAZ_wEe6EWsQ1gYGWGg" name="ComponentGetOrdersListener" compositeext:version="1.0.0.qualifier">
-    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_8e0dAp_wEe6EWsQ1gYGWGg" processName="om.integration.fom.main.GetOrdersListener"/>
+  <sca:component xmi:id="_Hty0gKSfEe6XUeJyIJxhHQ" name="ComponentValidateOffer" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_Hty0gaSfEe6XUeJyIJxhHQ" processName="tom.integration.fom.main.ValidateOffer"/>
+    <sca:service xmi:id="_Hty0gqSfEe6XUeJyIJxhHQ" name="LA-Integration-FOM-API-OfferPriceService-ValidateOffer">
+      <sca:interface.wsdl xmi:id="_Hty0g6SfEe6XUeJyIJxhHQ" interface="http://xmlns.example.com/20231227110301PLT#wsdl.interface(LA-Integration-FOM-API-OfferPriceService-ValidateOffer)" scaext:wsdlLocation="../Processes/om/integration/fom/main/ValidateOffer.bwp"/>
+    </sca:service>
   </sca:component>
 </sca:composite>

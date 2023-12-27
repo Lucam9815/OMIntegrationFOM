@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.tibco.com/aff/oms/service/soap" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:os="http://www.tibco.com/aff/orderservice"
+	xmlns:fault="http://www.tibco.com/aff/orderservice/result"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2005/08/addressing"
+	targetNamespace="http://www.tibco.com/aff/oms/service/soap">
+	
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/aff/service/soap">
+			<xsd:import namespace="http://www.tibco.com/aff/orderservice" schemaLocation="../../../../LASharedGlobal/LA.Shared.Global/Schemas/Integration/FOM/OrderService/OrderService.xsd" />
+			<xsd:import namespace="http://www.tibco.com/aff/orderservice/result" schemaLocation="../../../../LASharedGlobal/LA.Shared.Global/Schemas/Integration/FOM/OrderService/orderResultFault.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="ResultFaultException">
+		<wsdl:part element="fault:resultFault" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="GetOrderDetailsRequestMsg">
+		<wsdl:part element="os:GetOrderDetailsRequest" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrderDetailsResponseMsg">
+		<wsdl:part element="os:GetOrderDetailsResponse" name="parameters" />
+	</wsdl:message>
+
+	<wsdl:message name="SubmitOrderRequestMsg">
+		<wsdl:part element="os:SubmitOrderRequest" name="submitorderreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="SyncSubmitOrderRequestMsg">
+		<wsdl:part element="os:SyncSubmitOrderRequest" name="syncsubmitorderreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="SubmitOrderResponseMsg">
+		<wsdl:part element="os:SubmitOrderResponse" name="submitorderresparameters" />
+	</wsdl:message>
+
+
+	<wsdl:message name="SuspendOrderRequestMessage">
+		<wsdl:part element="os:SuspendOrderRequest" name="suspendOrderRequestParameters" />
+	</wsdl:message>
+	<wsdl:message name="SuspendOrderResponseMessage">
+		<wsdl:part element="os:SuspendOrderResponse" name="suspendOrderResponseParameters" />
+	</wsdl:message>
+
+	<wsdl:message name="ActivateOrderRequestMessage">
+		<wsdl:part element="os:ActivateOrderRequest" name="activateOrderRequestParameters" />
+	</wsdl:message>
+	<wsdl:message name="ActivateOrderResponseMessage">
+		<wsdl:part element="os:ActivateOrderResponse" name="activateOrderResponseParameters" />
+	</wsdl:message>
+
+
+	<wsdl:message name="SyncSubmitOrderResponseMsg">
+		<wsdl:part element="os:SyncSubmitOrderResponse" name="syncsubmitorderresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="CancelOrderRequestMsg">
+		<wsdl:part element="os:CancelOrderRequest" name="cancelorderreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="CancelOrderResponseMsg">
+		<wsdl:part element="os:CancelOrderResponse" name="canceltorderresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="WithdrawOrderRequestMsg">
+		<wsdl:part element="os:WithdrawOrderRequest" name="withdraworderreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="WithdrawOrderResponseMsg">
+		<wsdl:part element="os:WithdrawOrderResponse" name="withdrawtorderresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="AmendOrderRequestMsg">
+		<wsdl:part element="os:AmendOrderRequest" name="amendorderreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="AmendOrderResponseMsg">
+		<wsdl:part element="os:AmendOrderResponse" name="amendtorderresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="GetOrderExecutionPlanRequestMsg">
+		<wsdl:part element="os:GetOrderExecutionPlanRequest" name="getorderexecutionplanreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrderExecutionPlanResponseMsg">
+		<wsdl:part element="os:GetOrderExecutionPlanResponse" name="getorderexecutionplanresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="GetOrdersRequestMsg">
+		<wsdl:part element="os:GetOrdersRequest" name="getordersreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="GetOrdersResponseMsg">
+		<wsdl:part element="os:GetOrdersResponse" name="getordersresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="PerformBulkOrderActionRequestMsg">
+		<wsdl:part element="os:PerformBulkOrderActionRequest" name="performbulkorderactionreqparameters" />
+	</wsdl:message>
+	<wsdl:message name="PerformBulkOrderActionResponseMsg">
+		<wsdl:part element="os:PerformBulkOrderActionResponse" name="performbulkorderactionresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="GetEnrichedExecutionPlanRequest">
+		<wsdl:part name="getenrichedplanreqparameters" element="os:GetEnrichedExecutionPlanRequest"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="GetEnrichedExecutionPlanResponse">
+		<wsdl:part element="os:GetEnrichedExecutionPlanResponse"
+			name="getenrichedplanresparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="AuthenticateRequest">
+		<wsdl:part element="os:AuthenticateRequest" name="authenticaterequestoparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="AuthenticateReply">
+		<wsdl:part element="os:AuthenticateReply" name="authenticateresponseparameters" />
+	</wsdl:message>
+
+	<wsdl:message name="InternalErrorHandlerRequest">
+		<wsdl:part element="os:InternalErrorHandlerRequest" name="internalerrorhandlerrequestparams" />
+	</wsdl:message>
+
+	<wsdl:message name="InternalErrorHandlerResponse">
+		<wsdl:part element="os:InternalErrorHandlerResponse" name="internalerrorhandlerresponseparams" />
+	</wsdl:message>
+
+	<wsdl:portType name="OrderService">
+		<wsdl:operation name="GetOrderDetails">
+			<wsdl:input message="tns:GetOrderDetailsRequestMsg" />
+			<wsdl:output message="tns:GetOrderDetailsResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="SubmitOrder">
+			<wsdl:input message="tns:SubmitOrderRequestMsg" />
+			<wsdl:output message="tns:SubmitOrderResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="SuspendOrder">
+			<wsdl:input message="tns:SuspendOrderRequestMessage" />
+			<wsdl:output message="tns:SuspendOrderResponseMessage" />
+			<wsdl:fault message="tns:ResultFaultException" name="fault" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ActivateOrder">
+			<wsdl:input message="tns:ActivateOrderRequestMessage" />
+			<wsdl:output message="tns:ActivateOrderResponseMessage" />
+			<wsdl:fault message="tns:ResultFaultException" name="fault" />
+		</wsdl:operation>
+
+		<wsdl:operation name="SyncSubmitOrder">
+			<wsdl:input message="tns:SyncSubmitOrderRequestMsg" />
+			<wsdl:output message="tns:SyncSubmitOrderResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="CancelOrder">
+			<wsdl:input message="tns:CancelOrderRequestMsg" />
+			<wsdl:output message="tns:CancelOrderResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="WithdrawOrder">
+			<wsdl:input message="tns:WithdrawOrderRequestMsg" />
+			<wsdl:output message="tns:WithdrawOrderResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="AmendOrder">
+			<wsdl:input message="tns:AmendOrderRequestMsg" />
+			<wsdl:output message="tns:AmendOrderResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="GetOrderExecutionPlan">
+			<wsdl:input message="tns:GetOrderExecutionPlanRequestMsg" />
+			<wsdl:output message="tns:GetOrderExecutionPlanResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="GetOrders">
+			<wsdl:input message="tns:GetOrdersRequestMsg" />
+			<wsdl:output message="tns:GetOrdersResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+		<wsdl:operation name="PerformBulkOrderAction">
+			<wsdl:input message="tns:PerformBulkOrderActionRequestMsg" />
+			<wsdl:output message="tns:PerformBulkOrderActionResponseMsg" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+
+		<wsdl:operation name="GetEnrichedExecutionPlan">
+			<wsdl:input message="tns:GetEnrichedExecutionPlanRequest" />
+			<wsdl:output message="tns:GetEnrichedExecutionPlanResponse" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException"></wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="FetchAuthenticationToken">
+			<wsdl:input message="tns:AuthenticateRequest" />
+			<wsdl:output message="tns:AuthenticateReply" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException"></wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="HandlePlanItemInError">
+			<wsdl:input message="tns:InternalErrorHandlerRequest" />
+			<wsdl:output message="tns:InternalErrorHandlerResponse" />
+			<wsdl:fault name="fault" message="tns:ResultFaultException" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+
+	<wsdl:binding name="OrderServiceSoapBinding" type="tns:OrderService">
+
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="GetOrderDetails">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/GetOrderDetails" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="SubmitOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/SubmitOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="SuspendOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/SuspendOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ActivateOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/ActivateOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault name="fault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="SyncSubmitOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/SyncSubmitOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CancelOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/CancelOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="WithdrawOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/WithdrawOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="AmendOrder">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/AmendOrder" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrderExecutionPlan">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/GetOrderExecutionPlan" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="GetOrders">
+			<wsdlsoap:operation soapAction="http://www.tibco.com/aff/service/soap/GetOrders" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="PerformBulkOrderAction">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/service/soap/PerformBulkOrderAction" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="GetEnrichedExecutionPlan">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/oms/service/soap/GetEnrichedExecutionPlan" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="FetchAuthenticationToken">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/oms/service/soap/FetchAuthenticationToken" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="HandlePlanItemInError">
+			<wsdlsoap:operation
+				soapAction="http://www.tibco.com/aff/oms/service/soap/HandlePlanItemInError" />
+			<wsdl:input>
+				<wsdlsoap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<wsdlsoap:body use="literal" />
+
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<wsdlsoap:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+
+
+	<wsdl:service name="OrderService">
+		<wsdl:port binding="tns:OrderServiceSoapBinding" name="OrderServicePort">
+			<wsdlsoap:address location="http://localhost:9091/api/orderService" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

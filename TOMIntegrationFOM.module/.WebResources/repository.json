@@ -1,4 +1,41 @@
 {
-    "records": [],
-    "resources": []
+    "records": [{
+        "name": "Cloud",
+        "items": [],
+        "url": "https://integration.cloud.tibco.com:443"
+    }],
+    "resources": [
+        {
+            "location": "Service Descriptors/om.integration.fom.main.AmendOrder-AmendOrder.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/om.integration.fom.main.GetOrders-GetOrders.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/om.integration.fom.main.SubmitOrder-SubmitOrder.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/om.integration.fom.main.ValidateOffer-ValidateOffer.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.integration.fom.main.AmendOrder-AmendOrder.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.integration.fom.main.GetOrders-GetOrders.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.integration.fom.main.SubmitOrder-SubmitOrder.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.integration.fom.main.ValidateOffer-ValidateOffer.json",
+            "type": "generated"
+        }
+    ]
 }

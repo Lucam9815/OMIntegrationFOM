@@ -1,6 +1,6 @@
 [submodule "LogManagement"]
 	path = LogManagement
 	url = https://github.com/AntoIannaccone/LogManagement.git
-[submodule "OMSharedGlobal"]
-	path = OMSharedGlobal
-	url = https://github.com/Lucam9815/OMSharedGlobal.git
+[submodule "TOMSharedGlobal"]
+	path = TOMSharedGlobal
+	url = https://github.com/Lucam9815/TOMSharedGlobal.git

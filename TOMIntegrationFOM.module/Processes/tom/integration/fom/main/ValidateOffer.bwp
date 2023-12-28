@@ -9,6 +9,7 @@
     xmlns:ns0="http://www.tibco.com/pe/EngineTypes"
     xmlns:ns1="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"
     xmlns:ns2="http://www.tibco.com/commonLog"
+    xmlns:ns3="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -202,6 +203,7 @@
         </schema>
         <wsdl:definitions
             targetNamespace="http://xmlns.example.com/20231227110301PLT"
+            xmlns:custom="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"
             xmlns:extns="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"
             xmlns:extns1="http://tns.tibco.com/bw/REST"
             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
@@ -212,16 +214,16 @@
             <plnk:partnerLinkType name="partnerLinkType">
                 <plnk:role name="use" portType="tns:LA-Integration-FOM-API-OfferPriceService-ValidateOffer"/>
             </plnk:partnerLinkType>
-            <wsdl:import namespace="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"/>
             <wsdl:import namespace="http://tns.tibco.com/bw/REST"/>
+            <wsdl:import namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"/>
             <wsdl:message name="postRequest">
-                <wsdl:part element="extns:ValidateOfferRequest"
+                <wsdl:part element="custom:ValidateOfferRequest"
                     name="item" tibex:hasMultipleNamespaces="true"/>
                 <wsdl:part element="extns1:httpHeaders"
                     name="httpHeaders" tibex:source="bw.rest"/>
             </wsdl:message>
             <wsdl:message name="postResponse">
-                <wsdl:part element="extns:ValidateOfferResponse"
+                <wsdl:part element="custom:ValidateOfferResponse"
                     name="item" tibex:hasMultipleNamespaces="true"/>
             </wsdl:message>
             <wsdl:message name="post4XXFaultMessage">
@@ -825,10 +827,11 @@
             namespace="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema" prefix="tns1"/>
         <tibex:namespaceItem
             namespace="http://xmlns.example.com/20231227110301PLT" prefix="tns3"/>
+        <tibex:namespaceItem
+            namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema" prefix="tns4"/>
     </tibex:NamespaceRegistry>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/REST"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"/>
     <bpws:partnerLinks>
         <bpws:partnerLink myRole="use"
             name="LA-Integration-FOM-API-OfferPriceService-ValidateOffer"
@@ -847,9 +850,9 @@
                 <bpws:literal>om.integration.fom.jms.JMSConnectionResource</bpws:literal>
             </bpws:from>
         </bpws:variable>
-        <bpws:variable element="ns1:ValidateOfferRequest"
+        <bpws:variable element="ns3:ValidateOfferRequest"
             name="ValidateOfferCore-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns1:ValidateOfferResponse"
+        <bpws:variable element="ns3:ValidateOfferResponse"
             name="ValidateOfferCore" sca-bpel:internal="true"/>
         <bpws:variable element="ns2:SetLog" name="SetAndLogStart-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns2:SetLog" name="SetAndLogStart" sca-bpel:internal="true"/>
@@ -942,7 +945,7 @@
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:extActivity
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;ValidateOfferCore-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$post/item/tns1:ValidateOfferRequest&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns4=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;ValidateOfferCore-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$post/item/tns4:ValidateOfferRequest&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>"
                                     expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                                     inputVariable="ValidateOfferCore-input"
                                     name="ValidateOfferCore"
@@ -957,7 +960,7 @@
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;ValidateOfferCore-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$post.item&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns4=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;ValidateOfferCore-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$post.item&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
                                     subProcessName="tom.integration.fom.core.ValidateOfferCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>

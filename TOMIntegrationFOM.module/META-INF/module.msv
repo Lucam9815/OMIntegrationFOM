@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <msv:DocumentRoot xmlns:msv="http://tns.tibco.com/bw/model/core/moduleSV">
   <moduleSharedVariables>
-    <moduleSharedVariable name="ApplicationConfig" type="{http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema}ApplicationConfig" initialValueMode="textfile" initialValue="File/ApplicationConfig.xml"/>
+    <moduleSharedVariable name="ApplicationConfig" type="{http://it.tiscali.com.org/TOM/ApplicationConfig/internal/schema}ApplicationConfig" initialValueMode="textfile" initialValue="File/ApplicationConfig.xml"/>
   </moduleSharedVariables>
-  <import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema" location="../Schemas/ApplicationConfig.xsd"/>
+  <import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/ApplicationConfig/internal/schema" location="../Schemas/ApplicationConfig.xsd"/>
 </msv:DocumentRoot>

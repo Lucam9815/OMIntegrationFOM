@@ -10,6 +10,7 @@
     xmlns:ns1="http://www.tibco.com/commonLog"
     xmlns:ns2="http://www.tibco.com/aff/orderservice"
     xmlns:ns3="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"
+    xmlns:ns4="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -207,7 +208,7 @@
         productVersion="6.10.0 V23 2023-11-10" scalable="true"
         singleton="true" stateless="false" type="IT"/>
     <tibex:ProcessInterface context=""
-        input="{http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema}ValidateOfferRequest" output="{http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema}ValidateOfferResponse"/>
+        input="{http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema}ValidateOfferRequest" output="{http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema}ValidateOfferResponse"/>
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
@@ -501,20 +502,18 @@
         <tibex:namespaceItem
             namespace="http://www.tibco.com/aff/orderservice" prefix="tns1"/>
     </tibex:NamespaceRegistry>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/aff/orderservice"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
-        <bpws:variable element="ns3:ValidateOfferRequest" name="Start"
+        <bpws:variable element="ns4:ValidateOfferRequest" name="Start"
             sca-bpel:internal="true" tibex:parameter="in"/>
-        <bpws:variable element="ns3:ValidateOfferResponse"
+        <bpws:variable element="ns4:ValidateOfferResponse"
             name="End-input" sca-bpel:internal="true" tibex:parameter="out"/>
-        <bpws:variable element="ns3:ValidateOfferRequest"
+        <bpws:variable element="ns4:ValidateOfferRequest"
             name="ValidateOfferDirect-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns3:ValidateOfferResponse"
+        <bpws:variable element="ns4:ValidateOfferResponse"
             name="ValidateOfferDirect" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:Log" name="LogStart-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:Log" name="LogStart" sca-bpel:internal="true"/>

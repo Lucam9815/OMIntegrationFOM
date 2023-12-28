@@ -7,18 +7,23 @@
 	targetNamespace="http://www.tibco.com/aff/oms/service/soap">
 	
 	<wsdl:types>
-		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/aff/service/soap">
-			<xsd:import namespace="http://www.tibco.com/aff/orderservice" schemaLocation="../../../../LASharedGlobal/LA.Shared.Global/Schemas/Integration/FOM/OrderService/OrderService.xsd" />
-			<xsd:import namespace="http://www.tibco.com/aff/orderservice/result" schemaLocation="../../../../LASharedGlobal/LA.Shared.Global/Schemas/Integration/FOM/OrderService/orderResultFault.xsd" />
-		</xsd:schema>
-	</wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import
+				namespace="http://www.tibco.com/aff/orderservice"
+				schemaLocation="../../../../TOMSharedGlobal/TOMSharedGlobal/Schemas/Integration/FOM/OrderService/OrderService.xsd">
+			</xsd:import>
+			<xsd:import
+				namespace="http://www.tibco.com/aff/orderservice/result"
+				schemaLocation="../../../../TOMSharedGlobal/TOMSharedGlobal/Schemas/Integration/FOM/OrderService/orderResultFault.xsd">
+			</xsd:import></xsd:schema></wsdl:types>
 
 	<wsdl:message name="ResultFaultException">
 		<wsdl:part element="fault:resultFault" name="parameters" />
 	</wsdl:message>
 
 	<wsdl:message name="GetOrderDetailsRequestMsg">
-		<wsdl:part element="os:GetOrderDetailsRequest" name="parameters" />
+		<wsdl:part element="os:GetOrderDetailsRequest"
+			name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetOrderDetailsResponseMsg">
 		<wsdl:part element="os:GetOrderDetailsResponse" name="parameters" />

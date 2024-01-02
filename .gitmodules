@@ -1,6 +1,3 @@
-[submodule "LogManagement"]
-	path = LogManagement
-	url = https://github.com/AntoIannaccone/LogManagement.git
 [submodule "TOMSharedGlobal"]
 	path = TOMSharedGlobal
 	url = https://github.com/Lucam9815/TOMSharedGlobal.git

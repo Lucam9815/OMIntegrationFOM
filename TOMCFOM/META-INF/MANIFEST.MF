@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: OM.Integration.FOM Application
-Bundle-SymbolicName: TOMIntegrationFOM
+Bundle-Name: TOMICFOM Application
+Bundle-SymbolicName: TOMICFOM
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: TIBCO Software Inc.
 TIBCO-BW-Version: 6.10.0 V23 2023-11-10

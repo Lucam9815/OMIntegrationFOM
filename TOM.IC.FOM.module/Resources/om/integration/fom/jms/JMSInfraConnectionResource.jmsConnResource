@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_faGSIZslEe6T8Ir02ZwFZA" name="om.integration.fom.jms.JMSInfraConnectionResource" type="jms:JMSConnectionFactory">
+  <jndi:configuration xsi:type="jms:DirectConnectionFactory" xmi:id="_xyWb0JslEe6T8Ir02ZwFZA" factoryType="Queue/Topic">
+    <substitutionBindings xmi:id="_Gpv-cMD3Ee6A3cbA-84Rxw" template="providerURL" propName="/EMSInfra/ProviderURL"/>
+    <userCredentials xmi:id="_zo_0YJslEe6T8Ir02ZwFZA">
+      <substitutionBindings xmi:id="_HysjgMD3Ee6A3cbA-84Rxw" template="username" propName="/EMSInfra/Username"/>
+      <substitutionBindings xmi:id="_InVsgMD3Ee6A3cbA-84Rxw" template="password" propName="/EMSInfra/Password"/>
+    </userCredentials>
+  </jndi:configuration>
+</jndi:namedResource>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="tom.integration.fom.core.NotifyFOMCore"
-    suppressJoinFailure="yes"
+    name="tom.ic.fom.core.NotifyFOMCore" suppressJoinFailure="yes"
     targetNamespace="http://xmlns.example.com/20231227154653"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
@@ -1718,6 +1717,8 @@
             namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema" prefix="Q1"/>
         <tibex:namespaceItem
             namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema" prefix="tns4"/>
+        <tibex:namespaceItem
+            namespace="http://it.tiscali.com.org/TOM/ApplicationConfig/internal/schema" prefix="tns7"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tiscali.it/InternalSchema"/>
@@ -1763,7 +1764,7 @@
             sca-bpel:privateProperty="true" sca-bpel:property="yes"
             sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/bw/models/sharedresource/jms}JMSConnectionFactory" type="xsd:string">
             <bpws:from>
-                <bpws:literal>om.integration.fom.jms.JMSConnectionResource</bpws:literal>
+                <bpws:literal>om.integration.fom.jms.JMSInfraConnectionResource</bpws:literal>
             </bpws:from>
         </bpws:variable>
         <bpws:variable element="ns6:ActivityInput"
@@ -1840,7 +1841,7 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns7=&quot;http://www.tiscali.it/InternalSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns7:TOMResponse>&#xa;            &lt;tns7:Status>&#xa;                &lt;xsl:value-of select=&quot;0&quot;/>&#xa;            &lt;/tns7:Status>&#xa;        &lt;/tns7:TOMResponse>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns8=&quot;http://www.tiscali.it/InternalSchema&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&#xa;        &lt;tns8:TOMResponse>&#xa;            &lt;tns8:Status>&#xa;                &lt;xsl:value-of select=&quot;0&quot;/>&#xa;            &lt;/tns8:Status>&#xa;        &lt;/tns8:TOMResponse>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1873,7 +1874,7 @@
                         <tibex:inputBinding coercion=""
                             expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogStart-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'START'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start NotifyFOM Core'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
@@ -1892,7 +1893,7 @@
                         <tibex:inputBinding coercion=""
                             expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End NotifyFOM Core'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
@@ -2297,7 +2298,7 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns15=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+218541fa-7712-4a23-888b-763c4d47c18a+input&quot; xmlns:tns5=&quot;http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tns4=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema&quot; xmlns:Q1=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema&quot; xmlns:tns1=&quot;http://it.tiscali.com.org/TOM/ApplicationConfig/internal/schema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;BodyMsg&quot;/>&lt;xsl:param name=&quot;GetDestination&quot;/>&lt;xsl:param name=&quot;LogStart&quot;/>&lt;xsl:template name=&quot;JMSSendMessage-input&quot; match=&quot;/&quot;>&lt;tns15:ActivityInput>&lt;xsl:variable name=&quot;type&quot; select=&quot;$Start/Q1:Type&quot;/>&lt;xsl:if test=&quot;$GetDestination/tns1:Others/tns1:Param[tns1:Key = $type]/tns1:Value&quot;>&lt;destination>&lt;xsl:value-of select=&quot;$GetDestination/tns1:Others/tns1:Param[tns1:Key = $type]/tns1:Value&quot;/>&lt;/destination>&lt;/xsl:if>&lt;Body>&lt;xsl:value-of select=&quot;$BodyMsg&quot;/>&lt;/Body>&lt;tns15:OtherProperties>&lt;planID>&lt;xsl:value-of select=&quot;$Start/Q1:FOMRequest/tns4:planID&quot;/>&lt;/planID>&lt;planItemID>&lt;xsl:value-of select=&quot;$Start/Q1:FOMRequest/tns4:planItemID&quot;/>&lt;/planItemID>&lt;xsl:if test=&quot;$LogStart/tns:Header/tns:correlationId&quot;>&lt;correlationID>&lt;xsl:value-of select=&quot;$LogStart/tns:Header/tns:correlationId&quot;/>&lt;/correlationID>&lt;/xsl:if>&lt;originator>&lt;xsl:value-of select=&quot;'GetInfoOrdine_ORIGINATOR'&quot;/>&lt;/originator>&lt;TENANTID>&lt;xsl:value-of select=&quot;'GetInfoOrdine_TENANT_ID'&quot;/>&lt;/TENANTID>&lt;/tns15:OtherProperties>&lt;/tns15:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns15=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+218541fa-7712-4a23-888b-763c4d47c18a+input&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tns4=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema&quot; xmlns:Q1=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema&quot; xmlns:tns7=&quot;http://it.tiscali.com.org/TOM/ApplicationConfig/internal/schema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:param name=&quot;BodyMsg&quot;/>&lt;xsl:param name=&quot;GetDestination&quot;/>&lt;xsl:param name=&quot;LogStart&quot;/>&lt;xsl:template name=&quot;JMSSendMessage-input&quot; match=&quot;/&quot;>&lt;tns15:ActivityInput>&lt;xsl:variable name=&quot;type&quot; select=&quot;$Start/Q1:Type&quot;/>&lt;xsl:if test=&quot;$GetDestination/tns7:Others/tns7:Param[tns7:Key = $type]/tns7:Value&quot;>&lt;destination>&lt;xsl:value-of select=&quot;$GetDestination/tns7:Others/tns7:Param[tns7:Key = $type]/tns7:Value&quot;/>&lt;/destination>&lt;/xsl:if>&lt;Body>&lt;xsl:value-of select=&quot;$BodyMsg&quot;/>&lt;/Body>&lt;tns15:OtherProperties>&lt;planID>&lt;xsl:value-of select=&quot;$Start/Q1:FOMRequest/tns4:planID&quot;/>&lt;/planID>&lt;planItemID>&lt;xsl:value-of select=&quot;$Start/Q1:FOMRequest/tns4:planItemID&quot;/>&lt;/planItemID>&lt;xsl:if test=&quot;$LogStart/tns:Header/tns:correlationId&quot;>&lt;correlationID>&lt;xsl:value-of select=&quot;$LogStart/tns:Header/tns:correlationId&quot;/>&lt;/correlationID>&lt;/xsl:if>&lt;TENANTID>&lt;xsl:value-of select=&quot;'TIBCO'&quot;/>&lt;/TENANTID>&lt;/tns15:OtherProperties>&lt;/tns15:ActivityInput>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity activityTypeID="bw.jms.send"

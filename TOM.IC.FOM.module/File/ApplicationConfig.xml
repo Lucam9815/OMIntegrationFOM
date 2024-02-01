@@ -1,33 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<tns:ApplicationConfig Application="" xmlns:tns="http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://it.fastweb.com.org/COM/ApplicationConfig/internal/schema ../../COM.Shared.Global/Schemas/Internal/ApplicationConfig.xsd ">
-	<tns:Others>
-		<tns:Param>
-			<tns:Key>SuccessReply</tns:Key>
-			<tns:Value>tibco.aff.orchestrator.planItem.execute.reply</tns:Value>
-		</tns:Param>
-		<tns:Param>
-			<tns:Key>SuspendReply</tns:Key>
-			<tns:Value>tibco.aff.orchestrator.planItem.suspend.reply</tns:Value>
-		</tns:Param>
-		<tns:Param>
-			<tns:Key>ActivateReply</tns:Key>
-			<tns:Value>tibco.aff.orchestrator.planItem.execute.reply</tns:Value>
-		</tns:Param>
-		<tns:Param>
-			<tns:Key>Milestone</tns:Key>
-			<tns:Value>tibco.aff.orchestrator.planItem.milestone.notify.request</tns:Value>
-		</tns:Param>
-		<tns:Param>
-			<tns:Key>Failed</tns:Key>
-			<tns:Value>tibco.aff.orchestrator.planItem.execute.reply</tns:Value>
-		</tns:Param>
-		<tns:Param>
-			<tns:Key>SetUDF</tns:Key>
-			<tns:Value>tibco.aff.tds.plan.request</tns:Value>
-		</tns:Param>
-		<tns:Param>
-			<tns:Key>GetUDF</tns:Key>
-			<tns:Value>tibco.aff.tds.plan.read.request</tns:Value>
-		</tns:Param>
-	</tns:Others>
-</tns:ApplicationConfig>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ApplicationConfig xmlns="http://it.tiscali.com.org/TOM/ApplicationConfig/internal/schema" Application="TOM.IC.FOM">
+    <ProjectName>TOM.IC.FOM</ProjectName>
+    <EnableInspector>true</EnableInspector>
+    <Others>
+        <Param>
+            <Key>SuccessReply</Key>
+            <Value>tibco.aff.orchestrator.planItem.execute.reply</Value>
+        </Param>
+        <Param>
+            <Key>SuspendReply</Key>
+            <Value>tibco.aff.orchestrator.planItem.suspend.reply</Value>
+        </Param>
+        <Param>
+            <Key>ActivateReply</Key>
+            <Value>tibco.aff.orchestrator.planItem.execute.reply</Value>
+        </Param>
+        <Param>
+            <Key>Milestone</Key>
+            <Value>tibco.aff.orchestrator.planItem.milestone.notify.request</Value>
+        </Param>
+        <Param>
+            <Key>Failed</Key>
+            <Value>tibco.aff.orchestrator.planItem.execute.reply</Value>
+        </Param>
+        <Param>
+            <Key>SetUDF</Key>
+            <Value>tibco.aff.tds.plan.request</Value>
+        </Param>
+        <Param>
+            <Key>GetUDF</Key>
+            <Value>tibco.aff.tds.plan.read.request</Value>
+        </Param>
+    </Others>
+</ApplicationConfig>

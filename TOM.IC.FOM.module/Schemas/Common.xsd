@@ -8,7 +8,7 @@ xmlns:com="http://it.tiscali.com.org/TOM/TOMDataModel/internal/schema"
 elementFormDefault="qualified" xmlns:Q1="http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema">
 
     
-    <import namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema" schemaLocation="../../TOMSharedGlobal/TOMSharedGlobal/Schemas/Internal/FOM/CommonIntegrationFOM.xsd"></import>
+    <import namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema" schemaLocation="../../TOM.SharedGlobal/TOM.SharedGlobal/Schemas/Internal/FOM/CommonIntegrationFOM.xsd"></import>
     <element name="NotifyFOM">
 	    <complexType>
 	        <sequence>

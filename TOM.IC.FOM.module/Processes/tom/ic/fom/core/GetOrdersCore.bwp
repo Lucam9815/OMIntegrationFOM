@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="tom.integration.fom.core.ValidateOfferCore"
-    suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20231221113615"
+    name="tom.ic.fom.core.GetOrdersCore" suppressJoinFailure="yes"
+    targetNamespace="http://xmlns.example.com/20231221115050"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
@@ -10,7 +9,6 @@
     xmlns:ns1="http://www.tibco.com/commonLog"
     xmlns:ns2="http://www.tibco.com/aff/orderservice"
     xmlns:ns3="http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"
-    xmlns:ns4="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -18,7 +16,7 @@
     <tibex:VariableDescriptor type="MemorySaving">
         <task name="End">
             <endingVariables>
-                <variable>ValidateOfferDirect</variable>
+                <variable>GetOrdersDirect</variable>
             </endingVariables>
         </task>
         <task name="LogStart">
@@ -33,9 +31,9 @@
                 <variable>LogEnd</variable>
             </endingVariables>
         </task>
-        <task name="ValidateOfferDirect">
+        <task name="GetOrdersDirect">
             <endingVariables>
-                <variable>ValidateOfferDirect-input</variable>
+                <variable>GetOrdersDirect-input</variable>
                 <variable>Start</variable>
             </endingVariables>
         </task>
@@ -208,7 +206,7 @@
         productVersion="6.10.0 V23 2023-11-10" scalable="true"
         singleton="true" stateless="false" type="IT"/>
     <tibex:ProcessInterface context=""
-        input="{http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema}ValidateOfferRequest" output="{http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema}ValidateOfferResponse"/>
+        input="{http://www.tibco.com/aff/orderservice}GetOrdersRequest" output="{http://www.tibco.com/aff/orderservice}GetOrdersResponse"/>
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
@@ -402,7 +400,7 @@
                                     gradientEndColor="50431"
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.4"/>
-                                    <layoutConstraint x="266"
+                                    <layoutConstraint x="264"
                                     xsi:type="notation:Bounds" y="56"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
@@ -472,7 +470,6 @@
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@links/@children.1"/>
             <bendpoints points="[25, 0, -121, -23]$[136, 0, -10, -23]" xsi:type="notation:RelativeBendpoints"/>
-            <targetAnchor id="(0.20408163265306123,0.9591836734693877)" xsi:type="notation:IdentityAnchor"/>
         </edges>
         <edges
             source="//@children.0/@children.3/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3"
@@ -494,7 +491,7 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@links/@children.3"/>
-            <bendpoints points="[25, -15, -140, 87]$[141, -87, -24, 15]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, 0, -120, 0]$[121, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
@@ -502,23 +499,23 @@
         <tibex:namespaceItem
             namespace="http://www.tibco.com/aff/orderservice" prefix="tns1"/>
     </tibex:NamespaceRegistry>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/aff/orderservice"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
-        <bpws:variable element="ns4:ValidateOfferRequest" name="Start"
+        <bpws:variable element="ns2:GetOrdersRequest" name="Start"
             sca-bpel:internal="true" tibex:parameter="in"/>
-        <bpws:variable element="ns4:ValidateOfferResponse"
-            name="End-input" sca-bpel:internal="true" tibex:parameter="out"/>
-        <bpws:variable element="ns4:ValidateOfferRequest"
-            name="ValidateOfferDirect-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns4:ValidateOfferResponse"
-            name="ValidateOfferDirect" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:GetOrdersResponse" name="End-input"
+            sca-bpel:internal="true" tibex:parameter="out"/>
         <bpws:variable element="ns1:Log" name="LogStart-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:Log" name="LogStart" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:Log" name="LogEnd-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns1:Log" name="LogEnd" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:GetOrdersRequest"
+            name="GetOrdersDirect-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:GetOrdersResponse"
+            name="GetOrdersDirect" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -532,9 +529,9 @@
         <bpws:flow name="flow">
             <bpws:links>
                 <bpws:link name="StartToLog" tibex:linkType="SUCCESS"/>
-                <bpws:link name="LogStartToValidateOfferDirect" tibex:linkType="SUCCESS"/>
+                <bpws:link name="LogStartToGetOrdersDirect1" tibex:linkType="SUCCESS"/>
                 <bpws:link name="Log1ToEnd" tibex:linkType="SUCCESS"/>
-                <bpws:link name="ValidateOfferDirectToLogEnd" tibex:linkType="SUCCESS"/>
+                <bpws:link name="GetOrdersDirect1ToLogEnd" tibex:linkType="SUCCESS"/>
             </bpws:links>
             <bpws:extensionActivity>
                 <tibex:receiveEvent createInstance="yes"
@@ -551,14 +548,14 @@
             </bpws:extensionActivity>
             <bpws:extensionActivity>
                 <tibex:activityExtension inputVariable="End-input"
-                    name="End" tibex:copyOf="ValidateOfferDirect"
+                    name="End" tibex:copyOf="GetOrdersDirect"
                     tibex:xpdlId="8afd0357-2630-4e55-ba44-81a3e950d87a" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
                         <bpws:target linkName="Log1ToEnd"/>
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;ValidateOfferDirect&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$ValidateOfferDirect&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;GetOrdersDirect&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$GetOrdersDirect&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -585,13 +582,13 @@
                         <bpws:target linkName="StartToLog"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="LogStartToValidateOfferDirect"/>
+                        <bpws:source linkName="LogStartToGetOrdersDirect1"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogStart-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'START'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start ValidateOffer Core'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogStart-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'START'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start GetOrders Core'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
@@ -601,39 +598,38 @@
                     tibex:xpdlId="b7e786eb-cc51-4f2d-8c44-bc94177e963f"
                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="ValidateOfferDirectToLogEnd"/>
+                        <bpws:target linkName="GetOrdersDirect1ToLogEnd"/>
                     </bpws:targets>
                     <bpws:sources>
                         <bpws:source linkName="Log1ToEnd"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End ValidateOffer Core'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End GetOrders Core'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
             <bpws:extensionActivity>
-                <tibex:extActivity
-                    inputVariable="ValidateOfferDirect-input"
-                    name="ValidateOfferDirect"
-                    outputVariable="ValidateOfferDirect"
+                <tibex:extActivity inputVariable="GetOrdersDirect-input"
+                    name="GetOrdersDirect"
+                    outputVariable="GetOrdersDirect"
                     tibex:copyOf="Start"
-                    tibex:xpdlId="336e8906-6c8f-4264-a722-73a6aac46111"
+                    tibex:xpdlId="f500e0aa-f001-402c-b139-b5a6628c717f"
                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                     <bpws:targets>
-                        <bpws:target linkName="LogStartToValidateOfferDirect"/>
+                        <bpws:target linkName="LogStartToGetOrdersDirect1"/>
                     </bpws:targets>
                     <bpws:sources>
-                        <bpws:source linkName="ValidateOfferDirectToLogEnd"/>
+                        <bpws:source linkName="GetOrdersDirect1ToLogEnd"/>
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;ValidateOfferDirect-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$Start&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;GetOrdersDirect-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$Start&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:CallProcess
-                        subProcessName="tom.integration.fom.operation.ValidateOfferDirect" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                        subProcessName="tom.ic.fom.operation.GetOrdersDirect" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
         </bpws:flow>

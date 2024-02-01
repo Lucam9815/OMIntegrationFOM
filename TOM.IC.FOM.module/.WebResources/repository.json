@@ -36,6 +36,22 @@
         {
             "location": "Service Descriptors/tom.integration.fom.main.ValidateOffer-ValidateOffer.json",
             "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.ic.fom.main.AmendOrder-AmendOrder.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.ic.fom.main.GetOrders-GetOrders.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.ic.fom.main.SubmitOrder-SubmitOrder.json",
+            "type": "generated"
+        },
+        {
+            "location": "Service Descriptors/tom.ic.fom.main.ValidateOffer-ValidateOffer.json",
+            "type": "generated"
         }
     ]
 }

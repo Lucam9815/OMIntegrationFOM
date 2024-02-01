@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="tom.integration.fom.main.SubmitOrder"
-    suppressJoinFailure="yes"
+    name="tom.ic.fom.main.SubmitOrder" suppressJoinFailure="yes"
     targetNamespace="http://xmlns.example.com/20231227105252"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
@@ -234,7 +233,7 @@
                 name="LA-Integration-FOM-API-OrderService-SubmitOrder"
                 tibex:bw.rest.apipath="/LA/Integration/FOM/API/OrderService/SubmitOrder"
                 tibex:bw.rest.basepath="SubmitOrder"
-                tibex:bw.rest.resource="Service Descriptors/tom.integration.fom.main.SubmitOrder-SubmitOrder.json"
+                tibex:bw.rest.resource="Service Descriptors/tom.ic.fom.main.SubmitOrder-SubmitOrder.json"
                 tibex:bw.rest.resource.source="generated" tibex:source="bw.rest.service">
                 <wsdl:documentation>SubmitOrder service</wsdl:documentation>
                 <wsdl:operation name="post">
@@ -844,7 +843,7 @@
             sca-bpel:privateProperty="true" sca-bpel:property="yes"
             sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/bw/models/sharedresource/jms}JMSConnectionFactory" type="xsd:string">
             <bpws:from>
-                <bpws:literal>om.integration.fom.jms.JMSConnectionResource</bpws:literal>
+                <bpws:literal>om.integration.fom.jms.JMSInfraConnectionResource</bpws:literal>
             </bpws:from>
         </bpws:variable>
         <bpws:variable element="ns1:SubmitOrderRequest"
@@ -918,7 +917,7 @@
                                     expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:ns1=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;SubmitOrderCore-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$post.item&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    subProcessName="tom.integration.fom.core.SubmitOrderCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                                    subProcessName="tom.ic.fom.core.SubmitOrderCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
@@ -939,7 +938,7 @@
                                     expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End SubmitOrder Service'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    moduleRef="TOMSharedGlobal"
+                                    moduleRef="TOM.SharedGlobal"
                                     subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
@@ -958,7 +957,7 @@
                                     expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tns2=&quot;http://www.example.org/FlowInfo&quot; xmlns:ns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;SetAndLogStart-input&quot; match=&quot;/&quot;>&lt;tns:SetLog>&lt;tns:Header>&lt;tns:tibAppId>&lt;xsl:value-of select=&quot;tib:uuid()&quot;/>&lt;/tns:tibAppId>&lt;/tns:Header>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start SubmitOrder Service'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:SetLog>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    moduleRef="TOMSharedGlobal"
+                                    moduleRef="TOM.SharedGlobal"
                                     subProcessName="tom.shared.global.integration.log.SetAndLog" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>

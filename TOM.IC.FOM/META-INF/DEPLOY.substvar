@@ -138,12 +138,13 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//TOM.IC.FOM.module///EMSInfra/ProviderURL</name>
-			<value>tcp://63.35.130.46:7222</value>
+			<value>tcp://dev-oms-ems:7222</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<isOverride>false</isOverride>
+			<isOverride>true</isOverride>
 			<useLookupValue>false</useLookupValue>
+			<lookupValue>tcp://dev-oms-ems:7222</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TOM.IC.FOM.module///EMSInfra/Password</name>
@@ -228,12 +229,13 @@
 		</globalVariable>
 		<globalVariable>
 			<name>//TOM.SharedGlobal///EmsAppl/ProviderURL</name>
-			<value>tcp://63.35.130.46:7223</value>
+			<value>tcp://dev-oms-ems:7223</value>
 			<deploymentSettable>false</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<isOverride>false</isOverride>
+			<isOverride>true</isOverride>
 			<useLookupValue>false</useLookupValue>
+			<lookupValue>tcp://dev-oms-ems:7223</lookupValue>
 		</globalVariable>
 		<globalVariable>
 			<name>//TOM.SharedGlobal///HTTP/Client/Log/Host</name>

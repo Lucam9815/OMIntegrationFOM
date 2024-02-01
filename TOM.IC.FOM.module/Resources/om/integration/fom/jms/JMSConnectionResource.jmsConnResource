@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://xsd.tns.tibco.com/bw/models/sharedresource/jms" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmi:id="_faGSIZslEe6T8Ir02ZwFZA" name="om.integration.fom.jms.JMSConnectionResource" type="jms:JMSConnectionFactory">
-  <jndi:configuration xsi:type="jms:DirectConnectionFactory" xmi:id="_xyWb0JslEe6T8Ir02ZwFZA" factoryType="Queue/Topic" providerURL="tcp://localhost:7222">
-    <userCredentials xmi:id="_zo_0YJslEe6T8Ir02ZwFZA" username="admin" password=""/>
-  </jndi:configuration>
-</jndi:namedResource>

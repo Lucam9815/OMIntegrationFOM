@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpws:process exitOnStandardFault="no"
-    name="tom.integration.fom.main.NotifyFOM" suppressJoinFailure="yes"
+<bpws:process exitOnStandardFault="no" name="tom.ic.fom.main.NotifyFOM"
+    suppressJoinFailure="yes"
     targetNamespace="http://xmlns.example.com/20231227154102"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
@@ -701,6 +701,7 @@
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tiscali.it/InternalSchema"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
@@ -710,7 +711,7 @@
             sca-bpel:privateProperty="true" sca-bpel:property="yes"
             sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/bw/models/sharedresource/jms}JMSConnectionFactory" type="xsd:string">
             <bpws:from>
-                <bpws:literal>om.integration.fom.jms.JMSConnectionResource</bpws:literal>
+                <bpws:literal>tom.shared.global.jms.JMSApplConnectionResource</bpws:literal>
             </bpws:from>
         </bpws:variable>
         <bpws:variable element="ns1:Log" name="LogEnd-input" sca-bpel:internal="true"/>
@@ -759,7 +760,7 @@
                                     <value
                                     bodyTypeQName="schema:NotifyFOMRequest"
                                     connectionReference="jmsConnection"
-                                    destinationName="tom.integration.fom.notifyfom.queue"
+                                    destinationName="tom.ic.fom.notifyfom"
                                     maxSessions="1"
                                     messageType="XML Text"
                                     messagingStyle="Queue"
@@ -785,7 +786,7 @@
                         <tibex:inputBinding coercion=""
                             expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End NotifyFOM Listener'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
@@ -805,7 +806,7 @@
                         <tibex:inputBinding coercion=""
                             expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;SetAndLogStart-input&quot; match=&quot;/&quot;>&lt;tns:SetLog>&lt;tns:Header>&lt;tns:tibAppId>&lt;xsl:value-of select=&quot;tib:uuid()&quot;/>&lt;/tns:tibAppId>&lt;/tns:Header>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start NotifyFOM Listener'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:SetLog>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.SetAndLog" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
@@ -825,7 +826,7 @@
                             expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://it.fastweb.com.org/COM/IntegrationFOM/common/schema&quot; xmlns:tns2=&quot;http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema&quot; xmlns:Q1=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/common/schema&quot; xmlns:tns=&quot;http://it.tiscali.com.org/TOM/IntegrationFOM/internal/schema&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;JMSReceiveMessage&quot;/>&lt;xsl:template name=&quot;NotifyFOMCore-input&quot; match=&quot;/&quot;>&lt;xsl:choose>&lt;xsl:when test=&quot;exists($JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuccessFOMInput)&quot;>&lt;Q1:NotifyFOM>&lt;Q1:Type>&lt;xsl:value-of select=&quot;&amp;quot;SuccessReply&amp;quot;&quot;/>&lt;/Q1:Type>&lt;Q1:FOMRequest>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuccessFOMInput/ancestor-or-self::*/namespace::node()&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuccessFOMInput/@*&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuccessFOMInput/node()&quot;/>&lt;/Q1:FOMRequest>&lt;/Q1:NotifyFOM>&lt;/xsl:when>&lt;xsl:when test=&quot;exists($JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyActivateFOMInput)&quot;>&lt;Q1:NotifyFOM>&lt;Q1:Type>&lt;xsl:value-of select=&quot;&amp;quot;ActivateReply&amp;quot;&quot;/>&lt;/Q1:Type>&lt;Q1:FOMRequest>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyActivateFOMInput/ancestor-or-self::*/namespace::node()&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyActivateFOMInput/@*&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyActivateFOMInput/node()&quot;/>&lt;/Q1:FOMRequest>&lt;/Q1:NotifyFOM>&lt;/xsl:when>&lt;xsl:when test=&quot;exists($JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyErrorFOMInput)&quot;>&lt;Q1:NotifyFOM>&lt;Q1:Type>&lt;xsl:value-of select=&quot;'Failed'&quot;/>&lt;/Q1:Type>&lt;Q1:FOMRequest>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyErrorFOMInput/ancestor-or-self::*/namespace::node()&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyErrorFOMInput/@*&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyErrorFOMInput/node()&quot;/>&lt;/Q1:FOMRequest>&lt;/Q1:NotifyFOM>&lt;/xsl:when>&lt;xsl:when test=&quot;exists($JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuspendFOMInput)&quot;>&lt;Q1:NotifyFOM>&lt;Q1:Type>&lt;xsl:value-of select=&quot;&amp;quot;SuspendReply&amp;quot;&quot;/>&lt;/Q1:Type>&lt;Q1:FOMRequest>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuspendFOMInput/ancestor-or-self::*/namespace::node()&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuspendFOMInput/@*&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifySuspendFOMInput/node()&quot;/>&lt;/Q1:FOMRequest>&lt;/Q1:NotifyFOM>&lt;/xsl:when>&lt;xsl:otherwise>&lt;Q1:NotifyFOM>&lt;Q1:Type>&lt;xsl:value-of select=&quot;'Milestone'&quot;/>&lt;/Q1:Type>&lt;Q1:FOMRequest>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyMilestoneFOMInput/ancestor-or-self::*/namespace::node()&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyMilestoneFOMInput/@*&quot;/>&lt;xsl:copy-of select=&quot;$JMSReceiveMessage/Body/tns:NotifyFOMRequest/tns:NotifyMilestoneFOMInput/node()&quot;/>&lt;/Q1:FOMRequest>&lt;/Q1:NotifyFOM>&lt;/xsl:otherwise>&lt;/xsl:choose>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:CallProcess
-                        subProcessName="tom.integration.fom.core.NotifyFOMCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                        subProcessName="tom.ic.fom.core.NotifyFOMCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
             <bpws:extensionActivity>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpws:process exitOnStandardFault="no"
-    name="tom.integration.fom.operation.SubmitOrderDirect"
+    name="tom.ic.fom.operation.AmendOrderDirect"
     suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20231227115503"
+    targetNamespace="http://xmlns.example.com/20231221110041"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
@@ -18,12 +18,12 @@
     <tibex:VariableDescriptor type="MemorySaving">
         <task name="End">
             <endingVariables>
-                <variable>InvokeSubmitOrder</variable>
+                <variable>InvokeAmendOrder</variable>
             </endingVariables>
         </task>
-        <task name="InvokeSubmitOrder">
+        <task name="InvokeAmendOrder">
             <endingVariables>
-                <variable>InvokeSubmitOrder-input</variable>
+                <variable>InvokeAmendOrder-input</variable>
                 <variable>Start</variable>
             </endingVariables>
         </task>
@@ -305,24 +305,20 @@
         productVersion="6.10.0 V23 2023-11-10" scalable="true"
         singleton="true" stateless="false" type="IT"/>
     <tibex:ProcessInterface context=""
-        input="{http://www.tibco.com/aff/orderservice}SubmitOrderRequest" output="{http://www.tibco.com/aff/orderservice}SubmitOrderResponse"/>
+        input="{http://www.tibco.com/aff/orderservice}AmendOrderRequest" output="{http://www.tibco.com/aff/orderservice}AmendOrderResponse"/>
     <tibex:ProcessTemplateConfigurations/>
     <notation:Diagram measurementUnit="Pixel" type="BWProcess"
         xmlns:bwnotation="http://tns.tibco.com/bw/runtime/BWNotation"
         xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <children type="2001">
-            <children type="5001">
-                <element href="//0/@process"/>
-            </children>
+            <children type="5001"/>
             <children type="3002">
                 <styles xsi:type="notation:SortingStyle"/>
                 <styles xsi:type="notation:FilteringStyle"/>
-                <element href="//0/@process"/>
             </children>
             <children type="3003">
                 <styles xsi:type="notation:SortingStyle"/>
                 <styles xsi:type="notation:FilteringStyle"/>
-                <element href="//0/@process"/>
             </children>
             <children type="3004">
                 <children type="4018">
@@ -336,28 +332,24 @@
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Segoe UI"
@@ -375,28 +367,24 @@
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.1"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Segoe UI"
@@ -414,28 +402,24 @@
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.2"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Segoe UI"
@@ -453,28 +437,24 @@
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.3"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Segoe UI"
@@ -492,28 +472,24 @@
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.4"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.4"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.4"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <children type="4017">
                                     <styles
                                     fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
-                                    <element href="//0/@process/@activity/@activity/@activities.4"/>
                                     <layoutConstraint xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles fontName="Segoe UI"
@@ -543,7 +519,6 @@
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
-                                <element href="//0/@process/@activity"/>
                             </children>
                             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
@@ -626,9 +601,9 @@
         <tibex:namespaceItem
             namespace="http://www.tibco.com/aff/oms/service/soap" prefix="tns2"/>
     </tibex:NamespaceRegistry>
+    <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" namespace="http://www.tibco.com/aff/oms/service/soap"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/aff/orderservice"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
-    <bpws:import importType="http://schemas.xmlsoap.org/wsdl/" namespace="http://www.tibco.com/aff/oms/service/soap"/>
     <bpws:partnerLinks>
         <bpws:partnerLink name="OrderService"
             partnerLinkType="ns1:partnerLinkType" partnerRole="use"
@@ -1106,21 +1081,21 @@
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
-        <bpws:variable element="ns0:SubmitOrderRequest" name="Start"
+        <bpws:variable element="ns0:AmendOrderRequest" name="Start"
             sca-bpel:internal="true" tibex:parameter="in"/>
-        <bpws:variable element="ns0:SubmitOrderResponse"
-            name="End-input" sca-bpel:internal="true" tibex:parameter="out"/>
-        <bpws:variable messageType="ns2:SubmitOrderRequestMsg"
-            name="InvokeSubmitOrder-input" sca-bpel:internal="true"/>
-        <bpws:variable messageType="ns2:SubmitOrderResponseMsg"
-            name="InvokeSubmitOrder" sca-bpel:internal="true"/>
-        <bpws:variable element="ns4:Log" name="LogStart-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns4:Log" name="LogStart" sca-bpel:internal="true"/>
+        <bpws:variable element="ns0:AmendOrderResponse" name="End-input"
+            sca-bpel:internal="true" tibex:parameter="out"/>
+        <bpws:variable messageType="ns2:AmendOrderRequestMsg"
+            name="InvokeAmendOrder-input" sca-bpel:internal="true"/>
+        <bpws:variable messageType="ns2:AmendOrderResponseMsg"
+            name="InvokeAmendOrder" sca-bpel:internal="true"/>
         <bpws:variable element="ns4:Log" name="LogEnd-input" sca-bpel:internal="true"/>
         <bpws:variable element="ns4:Log" name="LogEnd" sca-bpel:internal="true"/>
         <bpws:variable element="ns3:ActivityErrorData"
-            name="_error_InvokeSubmitOrder" sca-bpel:internal="true"/>
+            name="_error_InvokeAmendOrder" sca-bpel:internal="true"/>
         <bpws:variable element="ns:ErrorReport" name="_error" sca-bpel:internal="true"/>
+        <bpws:variable element="ns4:Log" name="LogStart-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns4:Log" name="LogStart" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -1153,7 +1128,7 @@
             </bpws:extensionActivity>
             <bpws:extensionActivity>
                 <tibex:activityExtension
-                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;InvokeSubmitOrder&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$InvokeSubmitOrder/submitorderresparameters/tns:SubmitOrderResponse&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;InvokeAmendOrder&quot;/>&lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$InvokeAmendOrder/amendtorderresparameters/tns:AmendOrderResponse&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>"
                     expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
                     inputVariable="End-input" name="End"
                     tibex:xpdlId="cb2c6303-3480-4d5f-9738-967856e345e5" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
@@ -1162,7 +1137,7 @@
                     </bpws:targets>
                     <tibex:inputBindings>
                         <tibex:inputBinding
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;InvokeSubmitOrder.submitorderresparameters&quot;/>&#xa;    &lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$InvokeSubmitOrder.submitorderresparameters&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;InvokeAmendOrder.amendtorderresparameters&quot;/>&#xa;    &lt;xsl:template name=&quot;End-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$InvokeAmendOrder.amendtorderresparameters&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
                     <tibex:config>
                         <bwext:BWActivity
@@ -1180,16 +1155,16 @@
                     </tibex:config>
                 </tibex:activityExtension>
             </bpws:extensionActivity>
-            <bpws:invoke inputVariable="InvokeSubmitOrder-input"
-                name="InvokeSubmitOrder" operation="SubmitOrder"
-                outputVariable="InvokeSubmitOrder"
+            <bpws:invoke inputVariable="InvokeAmendOrder-input"
+                name="InvokeAmendOrder" operation="AmendOrder"
+                outputVariable="InvokeAmendOrder"
                 partnerLink="OrderService" portType="ns2:OrderService" tibex:xpdlId="e9bace54-cd3c-4973-99d4-ccaf2ec58a18">
                 <tibex:inputBindings>
                     <tibex:partBinding
-                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/aff/oms/service/soap&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;Start&quot;/>&#xa;    &lt;xsl:template name=&quot;InvokeSubmitOrder-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$Start&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                        expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns2=&quot;http://www.tibco.com/aff/oms/service/soap&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;Start&quot;/>&#xa;    &lt;xsl:template name=&quot;InvokeAmendOrder-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$Start&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                 </tibex:inputBindings>
                 <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://www.tibco.com/aff/oms/service/soap" version="2.0"&gt;&lt;xsl:param name="Start"/&gt;&lt;xsl:template name="InvokeSubmitOrder-input" match="/"&gt;&lt;tns2:SubmitOrderRequestMsg&gt;&lt;submitorderreqparameters&gt;&lt;xsl:copy-of select="$Start"/&gt;&lt;/submitorderreqparameters&gt;&lt;/tns2:SubmitOrderRequestMsg&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns2="http://www.tibco.com/aff/oms/service/soap" version="2.0"&gt;&lt;xsl:param name="Start"/&gt;&lt;xsl:template name="InvokeAmendOrder-input" match="/"&gt;&lt;tns2:AmendOrderRequestMsg&gt;&lt;amendorderreqparameters&gt;&lt;xsl:copy-of select="$Start"/&gt;&lt;/amendorderreqparameters&gt;&lt;/tns2:AmendOrderRequestMsg&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                 <bpws:targets>
                     <bpws:target linkName="LogStartToAmendOrder"/>
                 </bpws:targets>
@@ -1210,9 +1185,9 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogStart-input&quot; match=&quot;/&quot;>&lt;tns1:Log>&lt;tns1:Header/>&lt;tns1:Process>&lt;tns1:Phase>&lt;xsl:value-of select=&quot;'START'&quot;/>&lt;/tns1:Phase>&lt;/tns1:Process>&lt;tns1:Input>&lt;tns1:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns1:level>&lt;tns1:message>&lt;xsl:value-of select=&quot;'Start SubmitOrder Direct'&quot;/>&lt;/tns1:message>&lt;/tns1:Input>&lt;/tns1:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogStart-input&quot; match=&quot;/&quot;>&lt;tns1:Log>&lt;tns1:Header/>&lt;tns1:Process>&lt;tns1:Phase>&lt;xsl:value-of select=&quot;'START'&quot;/>&lt;/tns1:Phase>&lt;/tns1:Process>&lt;tns1:Input>&lt;tns1:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns1:level>&lt;tns1:message>&lt;xsl:value-of select=&quot;'Start AmendOrder Direct'&quot;/>&lt;/tns1:message>&lt;/tns1:Input>&lt;/tns1:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>
@@ -1229,9 +1204,9 @@
                     </bpws:sources>
                     <tibex:inputBindings>
                         <tibex:inputBinding coercion=""
-                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns1:Log>&lt;tns1:Header/>&lt;tns1:Process>&lt;tns1:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns1:Phase>&lt;/tns1:Process>&lt;tns1:Input>&lt;tns1:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns1:level>&lt;tns1:message>&lt;xsl:value-of select=&quot;'End SubmitOrder Direct'&quot;/>&lt;/tns1:message>&lt;/tns1:Input>&lt;/tns1:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                            expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns1:Log>&lt;tns1:Header/>&lt;tns1:Process>&lt;tns1:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns1:Phase>&lt;/tns1:Process>&lt;tns1:Input>&lt;tns1:level>&lt;xsl:value-of select=&quot;'DEBUG'&quot;/>&lt;/tns1:level>&lt;tns1:message>&lt;xsl:value-of select=&quot;'End AmendOrder Direct'&quot;/>&lt;/tns1:message>&lt;/tns1:Input>&lt;/tns1:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                     </tibex:inputBindings>
-                    <tibex:CallProcess moduleRef="TOMSharedGlobal"
+                    <tibex:CallProcess moduleRef="TOM.SharedGlobal"
                         subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                 </tibex:extActivity>
             </bpws:extensionActivity>

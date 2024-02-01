@@ -10,11 +10,11 @@
 		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 			<xsd:import
 				namespace="http://www.tibco.com/aff/orderservice"
-				schemaLocation="../../../../TOMSharedGlobal/TOMSharedGlobal/Schemas/Integration/FOM/OrderService/OrderService.xsd">
+				schemaLocation="../../../../TOM.SharedGlobal/TOM.SharedGlobal/Schemas/Integration/FOM/OrderService/OrderService.xsd">
 			</xsd:import>
 			<xsd:import
 				namespace="http://www.tibco.com/aff/orderservice/result"
-				schemaLocation="../../../../TOMSharedGlobal/TOMSharedGlobal/Schemas/Integration/FOM/OrderService/orderResultFault.xsd">
+				schemaLocation="../../../../TOM.SharedGlobal/TOM.SharedGlobal/Schemas/Integration/FOM/OrderService/orderResultFault.xsd">
 			</xsd:import></xsd:schema></wsdl:types>
 
 	<wsdl:message name="ResultFaultException">

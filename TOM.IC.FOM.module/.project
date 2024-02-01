@@ -3,6 +3,7 @@
 	<name>TOM.IC.FOM.module</name>
 	<comment></comment>
 	<projects>
+		<project>TOM.SharedGlobal</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

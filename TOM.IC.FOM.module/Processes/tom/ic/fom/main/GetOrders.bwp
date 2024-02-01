@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpws:process exitOnStandardFault="no"
-    name="tom.integration.fom.main.AmendOrder" suppressJoinFailure="yes"
-    targetNamespace="http://xmlns.example.com/20231227100341"
+<bpws:process exitOnStandardFault="no" name="tom.ic.fom.main.GetOrders"
+    suppressJoinFailure="yes"
+    targetNamespace="http://xmlns.example.com/20231227104841"
     xmlns:bpws="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
     xmlns:info="http://www.tibco.com/bw/process/info"
-    xmlns:ns="http://xmlns.example.com/20231227100341PLT"
+    xmlns:ns="http://xmlns.example.com/20231227104841PLT"
     xmlns:ns0="http://www.tibco.com/pe/EngineTypes"
-    xmlns:ns1="http://www.tibco.com/commonLog"
-    xmlns:ns2="http://www.tibco.com/aff/orderservice"
+    xmlns:ns1="http://www.tibco.com/aff/orderservice"
+    xmlns:ns2="http://www.tibco.com/commonLog"
     xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
     xmlns:sca-bpel="http://docs.oasis-open.org/ns/opencsa/sca-bpel/200801"
     xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
@@ -16,7 +16,7 @@
         <task name="postOut">
             <endingVariables>
                 <variable>postOut-input</variable>
-                <variable>AmendOrderCore</variable>
+                <variable>GetOrdersCore</variable>
             </endingVariables>
         </task>
         <task name="LogEnd">
@@ -31,9 +31,9 @@
                 <variable>SetAndLogStart</variable>
             </endingVariables>
         </task>
-        <task name="AmendOrderCore">
+        <task name="GetOrdersCore">
             <endingVariables>
-                <variable>AmendOrderCore-input</variable>
+                <variable>GetOrdersCore-input</variable>
                 <variable>post</variable>
             </endingVariables>
         </task>
@@ -200,29 +200,26 @@
             <element name="DuplicateKeyException" type="tns:DuplicateKeyExceptionType"/>
         </schema>
         <wsdl:definitions
-            targetNamespace="http://xmlns.example.com/20231227100341PLT"
+            targetNamespace="http://xmlns.example.com/20231227104841PLT"
             xmlns:extns="http://tns.tibco.com/bw/REST"
             xmlns:extns1="http://www.tibco.com/aff/orderservice"
-            xmlns:extns2="http://xmlns.example.com/AmendOrder/parameters"
             xmlns:plnk="http://docs.oasis-open.org/wsbpel/2.0/plnktype"
             xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"
-            xmlns:tns="http://xmlns.example.com/20231227100341PLT"
+            xmlns:tns="http://xmlns.example.com/20231227104841PLT"
             xmlns:vprop="http://docs.oasis-open.org/wsbpel/2.0/varprop"
             xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <plnk:partnerLinkType name="partnerLinkType">
-                <plnk:role name="use" portType="tns:la-integration-fom-api-orderservice-amendorder"/>
+                <plnk:role name="use" portType="tns:LA-Integration-FOM-API-OrderService-GetOrders"/>
             </plnk:partnerLinkType>
             <wsdl:import namespace="http://tns.tibco.com/bw/REST"/>
             <wsdl:import namespace="http://www.tibco.com/aff/orderservice"/>
-            <wsdl:import namespace="http://xmlns.example.com/AmendOrder/parameters"/>
             <wsdl:message name="postRequest">
-                <wsdl:part element="extns1:AmendOrderRequest"
-                    name="item" tibex:hasMultipleNamespaces="true"/>
+                <wsdl:part element="extns1:GetOrdersRequest" name="item" tibex:hasMultipleNamespaces="true"/>
                 <wsdl:part element="extns:httpHeaders"
                     name="httpHeaders" tibex:source="bw.rest"/>
             </wsdl:message>
             <wsdl:message name="postResponse">
-                <wsdl:part element="extns1:AmendOrderResponse"
+                <wsdl:part element="extns1:GetOrdersResponse"
                     name="item" tibex:hasMultipleNamespaces="true"/>
             </wsdl:message>
             <wsdl:message name="post4XXFaultMessage">
@@ -232,14 +229,14 @@
                 <wsdl:part element="extns:server5XXError" name="serverError"/>
             </wsdl:message>
             <wsdl:portType
-                name="la-integration-fom-api-orderservice-amendorder"
-                tibex:bw.rest.apipath="/LA/Integration/FOM/API/OrderService/AmendOrder"
-                tibex:bw.rest.basepath="AmendOrder"
-                tibex:bw.rest.resource="Service Descriptors/tom.integration.fom.main.AmendOrder-AmendOrder.json"
+                name="LA-Integration-FOM-API-OrderService-GetOrders"
+                tibex:bw.rest.apipath="/LA/Integration/FOM/API/OrderService/GetOrders"
+                tibex:bw.rest.basepath="GetOrders"
+                tibex:bw.rest.resource="Service Descriptors/tom.ic.fom.main.GetOrders-GetOrders.json"
                 tibex:bw.rest.resource.source="generated" tibex:source="bw.rest.service">
-                <wsdl:documentation>AmendOrder service</wsdl:documentation>
+                <wsdl:documentation>GetOrders service</wsdl:documentation>
                 <wsdl:operation name="post">
-                    <wsdl:documentation>postAmendOrder</wsdl:documentation>
+                    <wsdl:documentation>postGetOrders</wsdl:documentation>
                     <wsdl:input message="tns:postRequest" name="postInput"/>
                     <wsdl:output message="tns:postResponse" name="postOutput"/>
                     <wsdl:fault message="tns:post4XXFaultMessage" name="clientFault"/>
@@ -249,7 +246,7 @@
         </wsdl:definitions>
     </tibex:Types>
     <tibex:ProcessInfo callable="false" createdBy="user"
-        createdOn="Wed Dec 27 10:03:41 CET 2023" description=""
+        createdOn="Wed Dec 27 10:48:41 CET 2023" description=""
         extraErrorVars="true" modifiers="public"
         productVersion="6.10.0 V23 2023-11-10" scalable="true"
         singleton="true" stateless="true" type="IT"/>
@@ -434,8 +431,9 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.2"/>
 
                                     <layoutConstraint
-                                    x="418"
-                                    xsi:type="notation:Bounds" y="53"/>
+                                    width="84"
+                                    x="522"
+                                    xsi:type="notation:Bounds" y="47"/>
                                     </children>
 
                                     <children type="4002">
@@ -488,8 +486,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.3"/>
 
                                     <layoutConstraint
-                                    x="286"
-                                    xsi:type="notation:Bounds" y="53"/>
+                                    x="380"
+                                    xsi:type="notation:Bounds" y="47"/>
                                     </children>
 
                                     <children type="4002">
@@ -542,8 +540,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.4"/>
 
                                     <layoutConstraint
-                                    x="42"
-                                    xsi:type="notation:Bounds" y="53"/>
+                                    x="33"
+                                    xsi:type="notation:Bounds" y="47"/>
                                     </children>
 
                                     <children type="4002">
@@ -596,8 +594,8 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@activities.5"/>
 
                                     <layoutConstraint
-                                    x="164"
-                                    xsi:type="notation:Bounds" y="53"/>
+                                    x="218"
+                                    xsi:type="notation:Bounds" y="47"/>
                                     </children>
 
                                     <styles xsi:type="notation:DrawerStyle"/>
@@ -624,7 +622,7 @@
 
                                     <layoutConstraint
                                     height="191"
-                                    width="665" xsi:type="notation:Bounds"/>
+                                    width="674" xsi:type="notation:Bounds"/>
                                     </children>
 
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -644,7 +642,7 @@
 
                                     <layoutConstraint
                                     height="191"
-                                    width="668"
+                                    width="677"
                                     x="15" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -660,7 +658,7 @@
 
                                     <layoutConstraint
                                     height="215"
-                                    width="708" xsi:type="notation:Bounds"/>
+                                    width="717" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -720,7 +718,7 @@
                                     <element href="//0/@process/@activity/@activity/@activities.0/@messages.0"/>
                                     <layoutConstraint
                                     height="234"
-                                    width="770"
+                                    width="779"
                                     x="2" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -733,7 +731,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity/@activities.0"/>
                                     <layoutConstraint
-                                    height="264" width="789" xsi:type="notation:Bounds"/>
+                                    height="264" width="795" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -748,7 +746,7 @@
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@activity"/>
                                     <layoutConstraint height="384"
-                                    width="799" xsi:type="notation:Bounds"/>
+                                    width="808" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
                                 <styles xsi:type="notation:FilteringStyle"/>
@@ -757,7 +755,8 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity"/>
-                            <layoutConstraint height="384" width="802" xsi:type="notation:Bounds"/>
+                            <layoutConstraint height="365" width="444"
+                                x="30" xsi:type="notation:Bounds" y="20"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
                         <styles xsi:type="notation:FilteringStyle"/>
@@ -767,8 +766,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="408" width="802" x="1"
-                        xsi:type="notation:Bounds" y="1"/>
+                    <layoutConstraint height="409" width="519" xsi:type="notation:Bounds"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
                 <styles xsi:type="notation:FilteringStyle"/>
@@ -776,7 +774,7 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="460" width="1144" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="460" width="1153" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -789,7 +787,8 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.0"/>
-            <bendpoints points="[25, -18, -110, 82]$[111, -82, -24, 18]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, 0, -79, 13]$[103, 0, -1, 13]" xsi:type="notation:RelativeBendpoints"/>
+            <targetAnchor id="(0.9591836734693877,0.4489795918367347)" xsi:type="notation:IdentityAnchor"/>
         </edges>
         <edges
             source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.3"
@@ -800,7 +799,7 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.1"/>
-            <bendpoints points="[25, -17, -118, 82]$[119, -82, -24, 17]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, -11, -186, 81]$[187, -81, -24, 11]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
         <edges
             source="//@children.0/@children.4/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.2/@children.0/@children.1/@children.0/@children.0/@children.0/@children.0/@children.0/@children.0/@children.1"
@@ -811,7 +810,7 @@
             <styles lineColor="0" xsi:type="notation:ConnectorStyle"/>
             <styles fontName="Segoe UI" xsi:type="notation:FontStyle"/>
             <element href="//0/@process/@activity/@activity/@activities.0/@messages.0/@activity/@activity/@links/@children.2"/>
-            <bendpoints points="[25, 0, -121, 0]$[122, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
+            <bendpoints points="[25, 0, -117, 0]$[118, 0, -24, 0]" xsi:type="notation:RelativeBendpoints"/>
         </edges>
     </notation:Diagram>
     <tibex:NamespaceRegistry enabled="true">
@@ -824,16 +823,15 @@
         <tibex:namespaceItem
             namespace="http://www.tibco.com/aff/orderservice" prefix="ns1"/>
         <tibex:namespaceItem
-            namespace="http://xmlns.example.com/20231227100341PLT" prefix="tns1"/>
+            namespace="http://xmlns.example.com/20231227104841PLT" prefix="tns1"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://tns.tibco.com/bw/REST"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/aff/orderservice"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.tibco.com/commonLog"/>
-    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://xmlns.example.com/AmendOrder/parameters"/>
     <bpws:partnerLinks>
         <bpws:partnerLink myRole="use"
-            name="la-integration-fom-api-orderservice-amendorder"
-            partnerLinkType="ns:partnerLinkType" sca-bpel:ignore="false" sca-bpel:service="la-integration-fom-api-orderservice-amendorder"/>
+            name="LA-Integration-FOM-API-OrderService-GetOrders"
+            partnerLinkType="ns:partnerLinkType" sca-bpel:ignore="false" sca-bpel:service="LA-Integration-FOM-API-OrderService-GetOrders"/>
     </bpws:partnerLinks>
     <bpws:variables>
         <bpws:variable element="ns0:ProcessContext"
@@ -845,17 +843,17 @@
             sca-bpel:privateProperty="true" sca-bpel:property="yes"
             sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/bw/models/sharedresource/jms}JMSConnectionFactory" type="xsd:string">
             <bpws:from>
-                <bpws:literal>om.integration.fom.jms.JMSConnectionResource</bpws:literal>
+                <bpws:literal>om.integration.fom.jms.JMSInfraConnectionResource</bpws:literal>
             </bpws:from>
         </bpws:variable>
-        <bpws:variable element="ns2:AmendOrderRequest"
-            name="AmendOrderCore-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns2:AmendOrderResponse"
-            name="AmendOrderCore" sca-bpel:internal="true"/>
-        <bpws:variable element="ns1:SetLog" name="SetAndLogStart-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns1:SetLog" name="SetAndLogStart" sca-bpel:internal="true"/>
-        <bpws:variable element="ns1:Log" name="LogEnd-input" sca-bpel:internal="true"/>
-        <bpws:variable element="ns1:Log" name="LogEnd" sca-bpel:internal="true"/>
+        <bpws:variable element="ns1:GetOrdersRequest"
+            name="GetOrdersCore-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns1:GetOrdersResponse"
+            name="GetOrdersCore" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:Log" name="LogEnd-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:Log" name="LogEnd" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:SetLog" name="SetAndLogStart-input" sca-bpel:internal="true"/>
+        <bpws:variable element="ns2:SetLog" name="SetAndLogStart" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -868,33 +866,33 @@
     <bpws:scope name="scope">
         <bpws:flow name="flow">
             <bpws:links/>
-            <bpws:pick createInstance="yes" name="pick" tibex:xpdlId="5fafd4df-e29d-497e-950f-63325b7908b4">
+            <bpws:pick createInstance="yes" name="pick" tibex:xpdlId="117105ed-e4e7-43af-a4ec-cc8ea17aa908">
                 <bpws:onMessage operation="post"
-                    partnerLink="la-integration-fom-api-orderservice-amendorder"
-                    portType="ns:la-integration-fom-api-orderservice-amendorder"
-                    tibex:xpdlId="610feffd-0dc9-47db-b7c9-c2e7ba07aa59" variable="post">
+                    partnerLink="LA-Integration-FOM-API-OrderService-GetOrders"
+                    portType="ns:LA-Integration-FOM-API-OrderService-GetOrders"
+                    tibex:xpdlId="3485a73d-c880-4de5-8614-c4822d2d7751" variable="post">
                     <bpws:scope name="scope1">
                         <bpws:flow name="flow1">
                             <bpws:links>
                                 <bpws:link
-                                    name="SetAndLogStartToAmendOrderCore" tibex:linkType="SUCCESS"/>
-                                <bpws:link name="AmendOrderCoreToLogEnd" tibex:linkType="SUCCESS"/>
+                                    name="SetAndLogStartToGetOrdersCore" tibex:linkType="SUCCESS"/>
+                                <bpws:link name="GetOrdersCoreToLogEnd" tibex:linkType="SUCCESS"/>
                                 <bpws:link name="LogEndTopostOut" tibex:linkType="SUCCESS"/>
                             </bpws:links>
                             <bpws:empty name="OnMessageStart"
-                                tibex:constructor="onMessageStart" tibex:xpdlId="15581d86-93b2-4490-b783-0628746fe570"/>
+                                tibex:constructor="onMessageStart" tibex:xpdlId="8b7731eb-cf0b-4154-8f5f-cb30e448fdf8"/>
                             <bpws:empty name="OnMessageEnd"
-                                tibex:constructor="onMessageEnd" tibex:xpdlId="03e02bad-b60e-4da0-9703-7c9349e9aaa4"/>
+                                tibex:constructor="onMessageEnd" tibex:xpdlId="d7b0e9cb-08fb-476e-b5f6-4edb2866b526"/>
                             <bpws:reply name="postOut" operation="post"
-                                partnerLink="la-integration-fom-api-orderservice-amendorder"
-                                portType="ns:la-integration-fom-api-orderservice-amendorder"
-                                tibex:xpdlId="f07321bf-c80a-4ce6-89e0-2ca8d8d3153e" variable="postOut-input">
+                                partnerLink="LA-Integration-FOM-API-OrderService-GetOrders"
+                                portType="ns:LA-Integration-FOM-API-OrderService-GetOrders"
+                                tibex:xpdlId="af7fcc97-1de2-40e0-acc0-d8a362e8f3d7" variable="postOut-input">
                                 <tibex:inputBindings>
                                     <tibex:partBinding
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://xmlns.example.com/20231227100341PLT&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;AmendOrderCore&quot;/>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$AmendOrderCore&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns1=&quot;http://xmlns.example.com/20231227104841PLT&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;GetOrdersCore&quot;/>&#xa;    &lt;xsl:template name=&quot;postOut-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$GetOrdersCore&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                 </tibex:inputBindings>
                                 <tibex:inputBinding expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns1="http://xmlns.example.com/20231227100341PLT" version="2.0"&gt;&lt;xsl:param name="AmendOrderCore"/&gt;&lt;xsl:template name="postOut-input" match="/"&gt;&lt;tns1:postResponse&gt;&lt;item&gt;&lt;xsl:copy-of select="$AmendOrderCore"/&gt;&lt;/item&gt;&lt;/tns1:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
+&lt;xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tns1="http://xmlns.example.com/20231227104841PLT" version="2.0"&gt;&lt;xsl:param name="GetOrdersCore"/&gt;&lt;xsl:template name="postOut-input" match="/"&gt;&lt;tns1:postResponse&gt;&lt;item&gt;&lt;xsl:copy-of select="$GetOrdersCore"/&gt;&lt;/item&gt;&lt;/tns1:postResponse&gt;&lt;/xsl:template&gt;&lt;/xsl:stylesheet&gt;</tibex:inputBinding>
                                 <bpws:targets>
                                     <bpws:target linkName="LogEndTopostOut"/>
                                 </bpws:targets>
@@ -904,20 +902,20 @@
                                     inputVariable="LogEnd-input"
                                     name="LogEnd"
                                     outputVariable="LogEnd"
-                                    tibex:xpdlId="b893d182-f3ee-4856-aaf7-d596877a6b00"
+                                    tibex:xpdlId="8b72e457-ee94-4acc-8138-644728a62f66"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
-                                    <bpws:target linkName="AmendOrderCoreToLogEnd"/>
+                                    <bpws:target linkName="GetOrdersCoreToLogEnd"/>
                                     </bpws:targets>
                                     <bpws:sources>
                                     <bpws:source linkName="LogEndTopostOut"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End AmendOrder Service'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;LogEnd-input&quot; match=&quot;/&quot;>&lt;tns:Log>&lt;tns:Header/>&lt;tns:Process>&lt;tns:Phase>&lt;xsl:value-of select=&quot;'END'&quot;/>&lt;/tns:Phase>&lt;/tns:Process>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'End GetOrders Service'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:Log>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    moduleRef="TOMSharedGlobal"
+                                    moduleRef="TOM.SharedGlobal"
                                     subProcessName="tom.shared.global.integration.log.Log" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
@@ -926,41 +924,41 @@
                                     inputVariable="SetAndLogStart-input"
                                     name="SetAndLogStart"
                                     outputVariable="SetAndLogStart"
-                                    tibex:xpdlId="9b4c1bb9-a58c-4abd-a42b-b3acc77cf520"
+                                    tibex:xpdlId="83d74f58-c958-441f-bea2-1ed86d370298"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:sources>
-                                    <bpws:source linkName="SetAndLogStartToAmendOrderCore"/>
+                                    <bpws:source linkName="SetAndLogStartToGetOrdersCore"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tns2=&quot;http://www.example.org/FlowInfo&quot; xmlns:ns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;SetAndLogStart-input&quot; match=&quot;/&quot;>&lt;tns:SetLog>&lt;tns:Header>&lt;tns:tibAppId>&lt;xsl:value-of select=&quot;tib:uuid()&quot;/>&lt;/tns:tibAppId>&lt;/tns:Header>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start AmendOrder Service'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:SetLog>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns=&quot;http://www.tibco.com/commonLog&quot; xmlns:tns2=&quot;http://www.example.org/FlowInfo&quot; xmlns:ns=&quot;http://www.tibco.com/namespaces/tnt/plugins/jms+12633f0a-c6fa-434a-8de0-67ecc95ed510+output&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:template name=&quot;SetAndLogStart-input&quot; match=&quot;/&quot;>&lt;tns:SetLog>&lt;tns:Header>&lt;tns:tibAppId>&lt;xsl:value-of select=&quot;tib:uuid()&quot;/>&lt;/tns:tibAppId>&lt;/tns:Header>&lt;tns:Input>&lt;tns:level>&lt;xsl:value-of select=&quot;'INFO'&quot;/>&lt;/tns:level>&lt;tns:message>&lt;xsl:value-of select=&quot;'Start GetOrders Service'&quot;/>&lt;/tns:message>&lt;/tns:Input>&lt;/tns:SetLog>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    moduleRef="TOMSharedGlobal"
+                                    moduleRef="TOM.SharedGlobal"
                                     subProcessName="tom.shared.global.integration.log.SetAndLog" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
                             <bpws:extensionActivity>
                                 <tibex:extActivity
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:ns1=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;AmendOrderCore-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$post/item/ns1:AmendOrderRequest&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>"
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:ns1=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;post&quot;/>&lt;xsl:template name=&quot;GetOrdersCore-input&quot; match=&quot;/&quot;>&lt;xsl:copy-of select=&quot;$post/item/ns1:GetOrdersRequest&quot;/>&lt;/xsl:template>&lt;/xsl:stylesheet>"
                                     expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"
-                                    inputVariable="AmendOrderCore-input"
-                                    name="AmendOrderCore"
-                                    outputVariable="AmendOrderCore"
-                                    tibex:xpdlId="1859c615-a090-451d-a969-552cd31dcc96"
+                                    inputVariable="GetOrdersCore-input"
+                                    name="GetOrdersCore"
+                                    outputVariable="GetOrdersCore"
+                                    tibex:xpdlId="1601f12d-2ea7-4a2b-ac33-d1d6f5bcc8ce"
                                     type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
                                     <bpws:targets>
-                                    <bpws:target linkName="SetAndLogStartToAmendOrderCore"/>
+                                    <bpws:target linkName="SetAndLogStartToGetOrdersCore"/>
                                     </bpws:targets>
                                     <bpws:sources>
-                                    <bpws:source linkName="AmendOrderCoreToLogEnd"/>
+                                    <bpws:source linkName="GetOrdersCoreToLogEnd"/>
                                     </bpws:sources>
                                     <tibex:inputBindings>
                                     <tibex:inputBinding coercion=""
-                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:ns1=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;AmendOrderCore-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$post.item&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:ns1=&quot;http://www.tibco.com/aff/orderservice&quot; version=&quot;2.0&quot;>&#xa;    &lt;xsl:param name=&quot;post.item&quot;/>&#xa;    &lt;xsl:template name=&quot;GetOrdersCore-input&quot; match=&quot;/&quot;>&#xa;        &lt;xsl:copy-of select=&quot;$post.item&quot;/>&#xa;    &lt;/xsl:template>&#xa;&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
                                     </tibex:inputBindings>
                                     <tibex:CallProcess
-                                    subProcessName="tom.integration.fom.core.AmendOrderCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                                    subProcessName="tom.ic.fom.core.GetOrdersCore" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
                                 </tibex:extActivity>
                             </bpws:extensionActivity>
                         </bpws:flow>

@@ -1,0 +1,662 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "GetOrders",
+    "description" : "GetOrders service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/LA/Integration/FOM/API/OrderService/GetOrders" : {
+      "post" : {
+        "summary" : "postGetOrders",
+        "description" : "postGetOrders",
+        "operationId" : "post-LA-Integration-FOM-API-OrderService-GetOrders",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/GetOrdersRequest"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a GetOrdersResponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/GetOrdersResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Order" : {
+      "type" : "object",
+      "required" : [ "orderRef", "orderID", "header" ],
+      "properties" : {
+        "orderID" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "orderRef" : {
+          "type" : "string",
+          "maxLength" : 125
+        },
+        "header" : {
+          "$ref" : "#/definitions/headerType"
+        },
+        "line" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/line",
+            "uniqueItems" : false
+          }
+        },
+        "request" : {
+          "$ref" : "#/definitions/request"
+        },
+        "amendments" : {
+          "$ref" : "#/definitions/amendments"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "orderRequestType" : {
+      "type" : "object",
+      "required" : [ "orderRef", "line", "header" ],
+      "properties" : {
+        "orderRef" : {
+          "type" : "string",
+          "maxLength" : 125
+        },
+        "header" : {
+          "$ref" : "#/definitions/headerRequestType"
+        },
+        "line" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/line",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "Orders" : {
+      "type" : "object",
+      "properties" : {
+        "Order" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Order",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "request" : {
+      "type" : "object",
+      "required" : [ "orderRequest" ],
+      "properties" : {
+        "orderRequest" : {
+          "$ref" : "#/definitions/orderRequestType"
+        }
+      }
+    },
+    "orderLineUDF" : {
+      "type" : "object",
+      "required" : [ "name", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "headerUDF" : {
+      "type" : "object",
+      "required" : [ "name", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    },
+    "pagination" : {
+      "type" : "object",
+      "required" : [ "startRecord", "endRecord" ],
+      "properties" : {
+        "startRecord" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "endRecord" : {
+          "type" : "integer",
+          "format" : "int64"
+        }
+      }
+    },
+    "headerRequestType" : {
+      "type" : "object",
+      "required" : [ "customerID", "subscriberID" ],
+      "properties" : {
+        "description" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "customerID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "orderPriority" : {
+          "type" : "integer"
+        },
+        "invoiceAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "dateRange" : {
+      "type" : "object",
+      "properties" : {
+        "startDate" : {
+          "type" : "string",
+          "format" : "date"
+        },
+        "endDate" : {
+          "type" : "string",
+          "format" : "date"
+        }
+      }
+    },
+    "line" : {
+      "type" : "object",
+      "required" : [ "uom", "quantity", "productID", "action", "statusChanged", "lineNumber", "status" ],
+      "properties" : {
+        "lineNumber" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "productID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 255
+        },
+        "productVersion" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "quantity" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "uom" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "action" : {
+          "type" : "string"
+        },
+        "actionMode" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "linkID" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "inventoryID" : {
+          "type" : "string",
+          "maxLength" : 50
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "characteristic" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/characteristic",
+            "uniqueItems" : false
+          }
+        },
+        "customerItemID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "statusChanged" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "addressType" : {
+      "type" : "object",
+      "required" : [ "country", "locality", "postCode", "line1" ],
+      "properties" : {
+        "line1" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 100
+        },
+        "line2" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "line3" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "locality" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 45
+        },
+        "region" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "country" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 2
+        },
+        "postCode" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 20
+        },
+        "supplementaryLocation" : {
+          "type" : "string",
+          "maxLength" : 45
+        }
+      }
+    },
+    "amendments" : {
+      "type" : "object",
+      "required" : [ "orderAmendment" ],
+      "properties" : {
+        "orderAmendment" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/orderAmendment",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "orderAmendment" : {
+      "type" : "object",
+      "required" : [ "orderRequest" ],
+      "properties" : {
+        "creationDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "orderRequest" : {
+          "$ref" : "#/definitions/orderRequestType"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "characteristic" : {
+      "type" : "object",
+      "required" : [ "name", "description" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "description" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "value" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/value",
+            "uniqueItems" : false
+          }
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "GetOrdersRequest" : {
+      "type" : "object",
+      "properties" : {
+        "sortCriteria" : {
+          "$ref" : "#/definitions/sortCriteria"
+        },
+        "orderId" : {
+          "type" : "string"
+        },
+        "orderRef" : {
+          "type" : "string",
+          "maxLength" : 125
+        },
+        "customerID" : {
+          "type" : "string"
+        },
+        "subscriberID" : {
+          "type" : "string"
+        },
+        "dateRange" : {
+          "$ref" : "#/definitions/dateRange"
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "headerUDF" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/headerUDF",
+            "uniqueItems" : false
+          }
+        },
+        "orderLineUDF" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/orderLineUDF",
+            "uniqueItems" : false
+          }
+        },
+        "count" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "pagination" : {
+          "$ref" : "#/definitions/pagination"
+        },
+        "orderSummary" : {
+          "type" : "boolean"
+        },
+        "ExternalBusinessTransactionID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 64
+        }
+      }
+    },
+    "udf" : {
+      "type" : "object",
+      "required" : [ "name", "value" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 255
+        },
+        "value" : {
+          "type" : "string"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "extensionType" : {
+      "type" : "object",
+      "properties" : { }
+    },
+    "sortField" : {
+      "type" : "object",
+      "required" : [ "field", "orderUDFField" ],
+      "properties" : {
+        "orderUDFField" : {
+          "type" : "string"
+        },
+        "field" : {
+          "type" : "string",
+          "enum" : [ "orderId", "orderRef", "customerId", "subscriberId", "submittedDate", "status" ]
+        },
+        "sortBy" : {
+          "type" : "string",
+          "enum" : [ "ASC", "DESC" ]
+        },
+        "sortSequence" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "headerType" : {
+      "type" : "object",
+      "required" : [ "pointOfNoReturn", "statusChanged", "originator", "submittedDate", "suspended", "status" ],
+      "properties" : {
+        "submittedDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "description" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "customerID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "subscriberID" : {
+          "type" : "string",
+          "maxLength" : 64
+        },
+        "requiredByDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "requiredOnDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "orderPriority" : {
+          "type" : "integer"
+        },
+        "invoiceAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "deliveryAddress" : {
+          "$ref" : "#/definitions/addressType"
+        },
+        "notes" : {
+          "type" : "string",
+          "maxLength" : 100
+        },
+        "slaID" : {
+          "type" : "array",
+          "items" : {
+            "type" : "string",
+            "uniqueItems" : false
+          }
+        },
+        "udf" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/udf",
+            "uniqueItems" : false
+          }
+        },
+        "pointOfNoReturn" : {
+          "type" : "boolean"
+        },
+        "status" : {
+          "type" : "string",
+          "maxLength" : 22
+        },
+        "statusChanged" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "suspended" : {
+          "type" : "boolean"
+        },
+        "originator" : {
+          "type" : "string",
+          "maxLength" : 32
+        },
+        "planUniqueID" : {
+          "type" : "string"
+        },
+        "planStatus" : {
+          "type" : "string"
+        },
+        "planExpectedCompletionDate" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
+        "warning" : {
+          "type" : "string"
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "sortCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "sortField" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/sortField",
+            "uniqueItems" : false
+          }
+        }
+      }
+    },
+    "value" : {
+      "type" : "object",
+      "required" : [ "name", "type" ],
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "type" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "value" : {
+          "type" : "string",
+          "maxLength" : 45
+        },
+        "valueFrom" : {
+          "type" : "string",
+          "maxLength" : 19
+        },
+        "valueTo" : {
+          "type" : "string",
+          "maxLength" : 19
+        },
+        "extension" : {
+          "$ref" : "#/definitions/extensionType"
+        }
+      }
+    },
+    "GetOrdersResponse" : {
+      "type" : "object",
+      "properties" : {
+        "Orders" : {
+          "$ref" : "#/definitions/Orders"
+        },
+        "pagination" : {
+          "$ref" : "#/definitions/pagination"
+        },
+        "ExternalBusinessTransactionID" : {
+          "type" : "string",
+          "minLength" : 1,
+          "maxLength" : 64
+        }
+      }
+    }
+  }
+}

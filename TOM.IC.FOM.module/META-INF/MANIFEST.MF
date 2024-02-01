@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: TOMICFOM Module
-Bundle-SymbolicName: TOMICFOM.module
+Bundle-Name: TOM.IC.FOM Module
+Bundle-SymbolicName: TOM.IC.FOM.module
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: TIBCO Software Inc.
 TIBCO-BW-ModuleSharedVariables: META-INF/module.msv

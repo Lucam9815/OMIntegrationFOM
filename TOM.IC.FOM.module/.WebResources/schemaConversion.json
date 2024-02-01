@@ -1,21 +1,21 @@
 {"records": [
     {
-        "jsonSchemaLocation": "/TOMICFOM.module/Service Descriptors/om.integration.fom.main.AmendOrder-AmendOrder.json",
+        "jsonSchemaLocation": "/TOM.IC.FOM.module/Service Descriptors/om.integration.fom.main.AmendOrder-AmendOrder.json",
         "conversionType": "linked",
         "xsdSchemaTargetNamespace": "http://www.tibco.com/aff/orderservice"
     },
     {
-        "jsonSchemaLocation": "/TOMICFOM.module/Service Descriptors/om.integration.fom.main.GetOrders-GetOrders.json",
+        "jsonSchemaLocation": "/TOM.IC.FOM.module/Service Descriptors/om.integration.fom.main.GetOrders-GetOrders.json",
         "conversionType": "linked",
         "xsdSchemaTargetNamespace": "http://www.tibco.com/aff/orderservice"
     },
     {
-        "jsonSchemaLocation": "/TOMICFOM.module/Service Descriptors/om.integration.fom.main.SubmitOrder-SubmitOrder.json",
+        "jsonSchemaLocation": "/TOM.IC.FOM.module/Service Descriptors/om.integration.fom.main.SubmitOrder-SubmitOrder.json",
         "conversionType": "linked",
         "xsdSchemaTargetNamespace": "http://www.tibco.com/aff/orderservice"
     },
     {
-        "jsonSchemaLocation": "/TOMICFOM.module/Service Descriptors/om.integration.fom.main.ValidateOffer-ValidateOffer.json",
+        "jsonSchemaLocation": "/TOM.IC.FOM.module/Service Descriptors/om.integration.fom.main.ValidateOffer-ValidateOffer.json",
         "conversionType": "linked",
         "xsdSchemaTargetNamespace": "http://it.fastweb.com.org/COM/IntegrationFOM/internal/schema"
     }
